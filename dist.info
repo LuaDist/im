@@ -1,0 +1,10 @@
+--- This file is part of LuaDist project
+
+name = "im"
+version = "3.8"
+
+desc = "IM is a toolkit for Digital Imaging."
+author = "Antonio Scuri"
+license = "Tecgraf Library License/MIT"
+url = "http://www.tecgraf.puc-rio.br/im"
+maintainer = "Peter Kapec"

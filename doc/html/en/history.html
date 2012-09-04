@@ -1,0 +1,805 @@
+<html>
+
+<head>
+<title>History</title>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../style.css">
+<style type="text/css">
+.hist_changed {
+	color: #008000;
+	font-weight: bold;
+}
+.hist_new {
+	color: #0000FF;
+	font-weight: bold;
+}
+  .hist_fixed {
+	color: #FF0000;
+	font-weight: bold;
+}
+  .style1 {
+	color: #FF0000;
+}
+  </style>
+</head>
+
+<body>
+
+<h2>History of Changes</h2>
+<h3 dir="ltr">
+    <a href="http://sourceforge.net/projects/imtoolkit/files/3.8/">Version 3.8</a> (15/May/2012)</h3>
+<font SIZE="3">
+<ul dir="ltr">
+	<li dir="ltr"><span class="hist_new">New:</span><span style="color: #008000"><span
+            style="color: #000000"> 
+	function <font SIZE="3"><strong>imProcessAbnormalHyperionCorrection</strong></font><strong>.</strong></span></span></li>
+	<li dir="ltr"><font SIZE="3"><span class="hist_new">New:</span>
+	function im.<strong>ErrorStr</strong> in Lua.</font></li>
+	<li dir="ltr">
+<font SIZE="3">
+	<span class="hist_new">New:</span>
+	function
+<strong>imImageRemoveAlpha</strong>.</font></li>
+	<li dir="ltr">
+<font SIZE="3">
+	<span class="hist_new">New:</span>
+	support for IM_SHORT data type.</font></li>
+	<li dir="ltr">
+<font SIZE="3">
+	<span class="hist_new">New:</span>
+	IM_UN_POSITIVES and IM_UN_NEGATIVES operations for <strong>
+	imProcessUnArithmeticOp</strong>.</font></li>
+	<li dir="ltr">
+<font SIZE="3">
+	<span class="hist_new">New:</span>
+	IM_GAMUT_MINMAX flag for <strong>imProcessToneGamut</strong>.</font></li>
+	<li dir="ltr">
+<font SIZE="3">
+	<span class="hist_new">New:</span>
+	</font>IM_CAST_USER option for <strong>imConvertDataType</strong>.</li>
+	<li dir="ltr">
+		<span class="hist_changed">Changed:</span> im.<strong>ImageCreate</strong> 
+		in Lua will now issue an error when the image failed to be created.</li>
+	<li dir="ltr">
+		<span class="hist_changed">Changed:</span> <strong>imCalcHistogram</strong> 
+		renamed to <strong>imCalcByteHistogram</strong>, and created a New 
+		function
+<font SIZE="3">
+		<strong>imCalcHistogram </strong>&nbsp;that compute the histogram for a 
+		given image plane.</font></li>
+	<li dir="ltr">
+		<span class="hist_changed">Changed:</span> libexif updated to version 
+		0.6.20.</li>
+	<li dir="ltr">
+<font SIZE="3">
+		<span style="color: #008000">
+	<span
+            style="color: #000000"> 
+		<span class="hist_fixed">Fixed:</span> some invalid .lh files with size 
+	0 that affected the IMLua binding.</span></span></font></li>
+	<li dir="ltr">
+		<span style="color: #008000">
+	<span
+            style="color: #000000"> 
+<font SIZE="3">
+		<span class="hist_fixed">Fixed:</span> invalid memory access in <strong>
+		imVideoCaptureConnect</strong> when the camera has support for many 
+		resolutions.</font></span></span></li>
+	<li dir="ltr">
+		<span style="color: #008000">
+	<span
+            style="color: #000000"> 
+<font SIZE="3">
+		<span class="hist_fixed">Fixed:</span> parameter checking in im.<strong>ProcessRangeContrastThreshold</strong> 
+		and im.<strong>ProcessLocalMaxThreshold</strong> in Lua.</font></span></span></li>
+	<li dir="ltr">
+		<span style="color: #008000">
+	<span
+            style="color: #000000"> 
+<font SIZE="3">
+		<span class="hist_fixed">Fixed:</span> </font></span></span><strong>
+		imConvertDataType</strong> when promoting a small integer type to a 
+		bigger integer type. Improved demoting
+<font SIZE="3">
+		bigger integer type to small integer type, and promoting an integer to 
+		real.</font></li>
+	<li dir="ltr">
+<font SIZE="3">
+		<span style="color: #008000">
+	<span
+            style="color: #000000"> 
+		<span class="hist_fixed">Fixed:</span> </span></span>
+</font>
+		im.<strong>CalcImageStatistics</strong> and im.<strong>CalcHistogramStatistics</strong> 
+		in Lua when depth &gt; 1.</li>
+	<li dir="ltr">
+<font SIZE="3">
+		<span style="color: #008000">
+	<span
+            style="color: #000000"> 
+		<span class="hist_fixed">Fixed:</span> support for GPS Exif tags in JPEG 
+	format.</span></span></font></li>
+	<li dir="ltr">
+		<span style="color: #008000">
+	<span
+            style="color: #000000"> 
+<font SIZE="3">
+		<span class="hist_fixed">Fixed:</span> invalid ymin processing in
+	<strong>imProcessInsert</strong>.</font></span></span></li>
+</ul>
+</font>
+<h3 dir="ltr">
+    <a href="http://sourceforge.net/projects/imtoolkit/files/3.7/">Version 3.7</a> (02/Jan/2012)</h3>
+<ul dir="ltr">
+	<li dir="ltr"><span class="hist_new">New:</span><span style="color: #008000"><span
+            style="color: #000000"> 
+	function <strong>imImageMergeAttributes.</strong></span></span></li>
+	<li dir="ltr"><span class="hist_new">New:</span><span style="color: #008000"><span
+            style="color: #000000"> 
+	function <strong>imProcessNDVI.</strong></span></span></li>
+	<li dir="ltr"><span class="hist_new">New:</span><span style="color: #008000"><span
+            style="color: #000000"> 
+	function </span></span><strong>imProcessSetAlphaColor.</strong></li>
+	<li dir="ltr"><span class="hist_new">New:</span><span style="color: #008000"><span
+            style="color: #000000"> 
+	function </span></span><strong>imCalcPercentMinMax.</strong></li>
+	<li dir="ltr"><span class="hist_new">New:</span><span style="color: #008000"><span
+            style="color: #000000"> 
+	function </span></span><strong>imProcessShiftHSI</strong>.</li>
+	<li dir="ltr"><span class="hist_new">New:</span><span style="color: #008000"><span
+            style="color: #000000"> 
+	function </span></span><strong>imProcessCalcAutoGamma</strong>.</li>
+	<li dir="ltr"><strong><span class="hist_new">New:</span><span style="color: #008000"><span
+            style="color: #000000"> 
+	</span></span></strong><span style="color: #008000"><span
+            style="color: #000000"> 
+	functions <strong>imProcessUnaryPointColorOp</strong></span></span>, 
+	<strong>imProcessUnaryPointOp</strong>, <strong>imProcessMultiPointOp</strong> 
+	and <strong>imProcessMultiPointColorOp</strong>.</li>
+	<li dir="ltr"><strong><span class="hist_new">New:</span><span style="color: #008000"><span
+            style="color: #000000"> 
+	</span></span></strong><span style="color: #008000"><span
+            style="color: #000000"> 
+	functions <strong>imImageSetMap</strong> and <strong>imImageSetGray</strong>.</span></span></li>
+	<li dir="ltr"><strong><span class="hist_new">New:</span><span style="color: #008000"><span
+            style="color: #000000"> 
+	</span></span></strong><span style="color: #008000"><span
+            style="color: #000000"> 
+	support for OpenMP in the im_process library. Almost all image processing 
+	functions now have support for multi-thread using OpenMP. Since 
+	multi-threading can be slower than single thread depending on the 
+	conditions, there are two libraries one called &quot;im_process&quot; and one called &quot;im_process_omp&quot;. 
+	New function <strong>imOpenMPSetMinCount</strong> to be used to control the 
+	OpenMP loop. New functions <strong>imProcessConvertDataType</strong>,
+	<strong>imProcessConvertColorSpace</strong> <strong>imProcessConvertToBitmap</strong> 
+	equivalent to <strong>imConvertDataType</strong>, <strong>
+	imConvertColorSpace</strong> <strong>imConvertToBitmap</strong> but with 
+	support for OpenMP.</span></span></li>
+	<li dir="ltr"><strong><span class="hist_new">New:</span><span style="color: #008000"><span
+            style="color: #000000"> 
+	</span></span></strong><span style="color: #008000"><span
+            style="color: #000000"> 
+	image enhance utilities for in-place operation in Lua, including image:<strong>AutoLevel</strong>(), 
+	image:<strong>Equalize</strong>(), image:<strong>Negative</strong>(), image:<strong>Level</strong>(), 
+	image:<strong>BrightnessContrast</strong>(), and image:<strong>Gamma</strong>().</span></span></li>
+	<li dir="ltr"><span class="hist_new">New:</span><span style="color: #008000"><span
+            style="color: #000000"> 
+	function </span></span><strong>imFormatInfoExtra</strong>.</li>
+	<li dir="ltr"><strong><span class="hist_new">New:</span><span style="color: #008000"><span
+            style="color: #000000"> 
+	</span></span></strong><span style="color: #008000"><span
+            style="color: #000000"> 
+	support for Lua 5.2.</span></span></li>
+	<li dir="ltr">
+		<span class="hist_changed">Changed:</span> <strong>imImageInit</strong> 
+	now accepts also the IM_ALPHA flag.</li>
+	<li dir="ltr">
+		<span class="hist_changed">Changed:</span> <strong>imProcessThreshold, 
+		imProcessSliceThreshold, imProcessMinMaxThreshold </strong>and<strong> 
+		imProcessThresholdByDiff </strong>now supports also IM_FLOAT images.</li>
+	<li dir="ltr">
+		<span class="hist_changed">Changed:</span> <strong>
+		imProcessEqualizeHistogram, imProcessExpandHistogram, 
+		imCalcGrayHistogram, imCalcCountColors, imCalcHistogramStatistics</strong> 
+		and <strong>imCalcHistoImageStatistics</strong> now also supports data 
+		type IM_USHORT.</li>
+	<li dir="ltr">
+		<span class="hist_changed">Changed:</span> removed Lua bytecode usage in 
+		pre-compiled binaries. Now IM pre-compiled binaries are compatible with 
+		LuaJIT.</li>
+	<li dir="ltr">
+		<span class="hist_changed">Changed:</span> third party libraries updated 
+		to newest versions zlib 1.2.5, libpng 1.5.7, libjpeg 8c&nbsp; and 
+		libtiff 4.0.</li>
+	<li dir="ltr">
+		<span class="hist_changed">Changed:</span> <span class="style1"><strong>
+		IMPORTANT</strong></span> - zlib library separated 
+		from the main IM library. Now the application that statically link with 
+		IM must also link to zlib. If Tecmake is used, and USE_IM=Yes, then no 
+		changes are necessary.</li>
+	<li dir="ltr"><span style="color: #008000">
+	<span
+            style="color: #000000"> 
+		<span class="hist_fixed">Fixed:</span> support for alpha with gray 
+	images in SGI format.</span></span></li>
+	<li dir="ltr"><span style="color: #008000">
+	<span
+            style="color: #000000"> 
+		<span class="hist_fixed">Fixed:</span> </span></span><strong>
+	imProcessMultipleMean</strong> when source images were data type byte.</li>
+	<li dir="ltr"><span style="color: #008000">
+	<span
+            style="color: #000000"> 
+		<span class="hist_fixed">Fixed:</span> im.<strong>ProcessAddMargins</strong> 
+	in Lua to accept sizes greater or equal than the source size.</span></span></li>
+	<li dir="ltr"><span style="color: #008000">
+	<span
+            style="color: #000000"> 
+		<span class="hist_fixed">Fixed:</span> im.<strong>ProcessUniformErrThreshold</strong>, 
+	im.<strong>ProcessMinMaxThreshold</strong> and im.<strong>ProcessPercentThreshold</strong> 
+	return value in Lua.</span></span></li>
+	<li dir="ltr"><span style="color: #008000">
+	<span
+            style="color: #000000"> 
+		<span class="hist_fixed">Fixed:</span> invalid memory access when 
+	loading TIFF files with custom tags using double precision values.</span></span></li>
+	<li dir="ltr"><span style="color: #008000">
+	<span
+            style="color: #000000"> 
+		<span class="hist_fixed">Fixed:</span> internal precision of </span></span>
+	<strong>imCalcImageStatistics</strong>.</li>
+	<li dir="ltr"><span style="color: #008000">
+	<span
+            style="color: #000000"> 
+		<span class="hist_fixed">Fixed:</span> computation order of IM_BIN_SUB 
+	in <strong>imProcessArithmeticOp</strong> and in <strong>
+	imProcessArithmeticConstOp</strong>, was computing b-a instead of a-b.</span></span></li>
+	<li dir="ltr"><span style="color: #008000">
+	<span
+            style="color: #000000"> 
+		<span class="hist_fixed">Fixed:</span> im.<strong>CalcHistogram</strong> 
+	in Lua when data type is IM_USHORT.</span></span></li>
+	<li dir="ltr"><span style="color: #008000">
+	<span
+            style="color: #000000"> 
+		<span class="hist_fixed">Fixed:</span> loading RGB images with non byte 
+	data type, when data planes in file are packed.</span></span></li>
+	<li dir="ltr"><span style="color: #008000">
+	<span
+            style="color: #000000"> 
+		<span class="hist_fixed">Fixed:</span> memory leaks when parameter test 
+	fails in functions that receive an array in Lua.</span></span></li>
+	<li dir="ltr"><span style="color: #008000">
+	<span
+            style="color: #000000"> 
+		<span class="hist_fixed">Fixed:</span> loading of DNG (TIFF) files.</span></span></li>
+</ul>
+<h3 dir="ltr">
+    <a href="http://sourceforge.net/projects/imtoolkit/files/3.6.3/">Version 
+	3.6.3</a> (09/Nov/2010)</h3>
+<ul dir="ltr">
+	<li dir="ltr"><span class="hist_new">New:</span><span style="color: #008000"><span
+            style="color: #000000"> 
+	function </span></span><strong>imImageCreateFromOpenGLData</strong>.</li>
+	<li dir="ltr">
+		<span class="hist_changed">Changed:</span> the function <strong>
+	imConvertPacking</strong> now has one more parameter so src_depth can be 
+	different from dst_depth.</li>
+	<li dir="ltr">
+		<span style="color: #008000">
+	<span
+            style="color: #000000"> 
+		<span class="hist_fixed">Fixed:</span> </span></span><strong>
+		imImageGetOpenGLData</strong> for some configurations.</li>
+	<li dir="ltr"><span style="color: #008000">
+	<span
+            style="color: #000000"> 
+		<span class="hist_fixed">Fixed:</span> write support for alpha in TGA 
+	format. (Thanks to Nicolas Noble)</span></span></li>
+</ul>
+<h3 dir="ltr">
+    <a href="http://sourceforge.net/projects/imtoolkit/files/3.6.2/">Version 3.6.2</a> (22/Jun/2010)</h3>
+<ul dir="ltr">
+	<li dir="ltr"><span class="hist_new">New:</span><span style="color: #008000"><span
+            style="color: #000000"> 
+	function <strong>imVideoCaptureReleaseDevices</strong>.</span></span></li>
+	<li dir="ltr">
+		<span class="hist_changed">Changed:</span> ICON format now supports 
+	writing up to 10 images.</li>
+	<li dir="ltr">
+		<span class="hist_changed">Changed:</span> 
+    replaced old &quot;arg&quot; usage for &quot;...&quot; to improve better compatibility with 
+	LuaJIT.</li>
+	<li dir="ltr">
+		<span class="hist_changed">Changed:</span>
+    control of LOHs inclusion moved from the source code to the makefile.</li>
+	<li dir="ltr">
+		<span class="hist_changed">Changed:</span>
+    removed compatibility with require&quot;imlua51&quot;, now LuaBinaries must be used 
+	or LUA_CPATH must be set.</li>
+	<li dir="ltr">
+		<span class="hist_changed">Changed:</span> added compatibility with Lua 
+		5.2.</li>
+	<li dir="ltr">
+		<span class="hist_fixed">Fixed:</span><span style="color: #008000"><span
+            style="color: #000000"> image:<strong>HasAlpha</strong>() method in 
+		Lua was returning a number instead of a boolean, so <strong>im</strong>.<strong>ImageCreateBased</strong> 
+		was adding an alpha channel to all new images.</span></span></li>
+</ul>
+<h3 dir="ltr">
+    <a href="http://sourceforge.net/projects/imtoolkit/files/3.6.1/">Version 3.6.1</a> (23/Apr/2010)</h3>
+<ul dir="ltr">
+	<li dir="ltr"><span style="color: #008000"><span class="hist_fixed">Fixed:</span><span
+            style="color: #000000"> invalid memory access in <strong>
+	imProcessResize</strong> when one dimension is equal to the original.</span></span></li>
+	<li dir="ltr"><span style="color: #008000"><span class="hist_fixed">Fixed:</span><span
+            style="color: #000000"> <strong>imProcessCompose</strong> parameter 
+	parsing in Lua.</span></span></li>
+	<li dir="ltr"><span style="color: #008000"><span class="hist_fixed">Fixed:</span><span
+            style="color: #000000"> invalid memory access when saving an image 
+	with the JPEG 2000 format.</span></span></li>
+</ul>
+<h3 dir="ltr">
+    <a href="http://sourceforge.net/projects/imtoolkit/files/3.6/">Version 3.6</a> (26/Jan/2010)</h3>
+<ul dir="ltr">
+        <li><span class="hist_new">New:</span> function <strong>
+		imImageCopyPlane</strong>.</li>
+		<li><span class="hist_new">New:</span> function <strong>
+		imProcessCompose</strong>.</li>
+		<li><span class="hist_new">New:</span> function <strong>
+		imImageSetAlpha</strong>.</li>
+	<li dir="ltr">
+		<span class="hist_changed">Changed:</span> libTIFF downgraded to version 
+		3.8.2 because of the JPEG support in TIFF not working on the newer 
+		versions.</li>
+		<li dir="ltr">
+		<span class="hist_changed">Changed:</span> 
+		<span style="color: #008000"><span
+            style="color: #000000"> included alpha support in <strong>
+		imProcessSplitComponents</strong> and <strong>imProcessMergeComponents</strong>. 
+		Included alpha support in all geometric and size operations.</span></span></li>
+	<li dir="ltr"><span style="color: #008000"><span class="hist_fixed">Fixed:</span><span
+            style="color: #000000"> invalid memory access in <strong>
+	imAnalyzeFindRegions</strong> when more than 16k regions where found.</span></span></li>
+	<li dir="ltr"><span style="color: #008000"><span class="hist_fixed">Fixed:</span><span
+            style="color: #000000"> memory leak in <strong>imFileOpen</strong>.</span></span></li>
+		<li dir="ltr"><span style="color: #008000"><span class="hist_fixed">Fixed:</span><span
+            style="color: #000000"> alpha support in image:<strong>CopyPlane</strong>() 
+		and in channel indexing in Lua.</span></span></li>
+		<li dir="ltr"><span style="color: #008000"><span class="hist_fixed">Fixed:</span><span
+            style="color: #000000"> incomplete initialization of the array in
+		<strong>imAnalyzeMeasureArea</strong>.</span></span></li>
+		<li dir="ltr"><span style="color: #008000"><span class="hist_fixed">Fixed:</span><span
+            style="color: #000000"> <strong>imProcessRemoveByArea</strong> 
+		inside/outside logic.</span></span></li>
+</ul>
+<h3 dir="ltr">
+    <a href="http://sourceforge.net/projects/imtoolkit/files/3.5/">Version 3.5</a> (02/Oct/2009)</h3>
+    <ul>
+        <li><span class="hist_new">New:</span> functions <strong>
+		imProcessUnsharp</strong> and <strong>imProcessSharp</strong>.</li>
+		<li><span class="hist_new">New:</span> function <strong>
+		imImageGetOpenGLData</strong>.</li>
+		<li><span class="hist_new">New:</span> functions <strong>
+		im.ConvertDataTypeNew</strong>, <strong>im.ConvertColorSpaceNew</strong> 
+		and <strong>im.ConvertToBitmapNew</strong> in Lua.</li>
+		<li><span class="hist_new">New:</span> file attributes 
+		&quot;FileFormat&quot;, &quot;FileCompression&quot; and &quot;FileImageCount&quot; when reading from 
+		file. Available for all formats.</li>
+		<li><span class="hist_new">New:</span> ASCII compression for RAW 
+		format to access text data instead of binary.</li>
+		<li><span class="hist_changed">Changed:</span> libPNG updated to version 
+	1.2.39. Removed changes to the library that made it incompatible with other 
+		libPNG distributions.</li>
+		<li><span class="hist_changed">Changed:</span> libLZF updated to 
+		version 3.5.</li>
+		<li><span class="hist_changed">Changed:</span> libJPEG updated to 
+		version 7.</li>
+		<li><span class="hist_changed">Changed:</span> libEXIF updated to version 0.6.17.</li>
+		<li><span class="hist_changed">Changed:</span> libTIFF updated to version 
+		3.9.1.</li>
+		<li><span class="hist_changed">Changed:</span> library im_fftw3 to use 
+		an external library.</li>
+		<li><span class="hist_changed">Changed:</span><span style="color: #008000"> <span
+            style="color: #000000"> <strong>imImageCreateBased</strong> and
+		<strong>imConvertColorSpace</strong> now also 
+		consider the alpha plane.</span></span></li>
+		<li><span class="hist_changed">Changed:</span><span style="color: #008000"> </span><strong>imProcessPrune</strong> 
+		renamed to <strong>imProcessRemoveByArea</strong>, and added a new 
+		parameter to select inside or outside the interval.</li>
+		<li><span class="hist_changed">Changed:</span><span style="color: #008000"> </span>removed IM_UN_INC operation from <strong>imProcessUnArithmeticOp</strong>. 
+		It was not an unary operation. Can simply be done in place by <strong>
+		imProcessArithmeticOp</strong> and IM_BIN_ADD. </li>
+		<li><span class="hist_changed">Changed:</span><span style="color: #008000"> </span>now<strong> imProcessUnArithmeticOp</strong>,
+		<strong>imProcessArithmeticConstOp</strong> and <strong>
+		imProcessArithmeticOp</strong> willl crop the result to 0-255 if destiny 
+		has data type byte.</li>
+		<li><span style="color: #008000"><span class="hist_fixed">Fixed:</span><span
+            style="color: #000000"> PNG attribute TransparencyIndex. new PNG 
+		attribute TransparencyMap. TransparentColor renamed to 
+		TransparencyColor.</span></span></li>
+		<li><span style="color: #008000"><span class="hist_fixed">Fixed:</span><span
+            style="color: #000000"> invalid convertion from MAP to GRAY when 
+		loading <strong>imImages</strong>.</span></span></li>
+		<li><span style="color: #008000"><span class="hist_fixed">Fixed:</span><span
+            style="color: #000000"> new image size computation of <strong>im.ProcessCropNew</strong>
+            in Lua.</span></span>&nbsp;</li>
+		<li><span style="color: #008000"><span class="hist_fixed">Fixed:</span><span
+            style="color: #000000"> loading of RAW data.</span></span></li>
+		<li><span style="color: #008000"><span class="hist_fixed">Fixed:</span><span
+            style="color: #000000"> <strong>imImageClear</strong> to initialize 
+		data just like <strong>imImageCreate</strong> does. </span></span></li>
+		<li><span style="color: #008000"><span class="hist_fixed">Fixed:</span><span
+            style="color: #000000"> <strong>imImageReshape</strong> when the 
+		image has an alpha plane. Image is not cleared anymore. </span></span></li>
+		<li><span style="color: #008000"><span class="hist_fixed">Fixed:</span><span
+            style="color: #000000"> boolean parameters in <strong>
+		file:ReadImageData, im.ConvertDataType, im.ConvertToBitmap, im.ProcessSplitComplex, 
+		im.ProcessQuantizeRGBUniform, im.ProcessBitPlane, im.ProcessRotateRef, 
+		im.ProcessRotate90, im.ProcessBinMorphConvolve, im.ProcessMergeComplex, 
+		im.CalcHistogram, im.CalcGrayHistogram </strong>and <strong>
+		im.AnalyzeFindRegions</strong> in Lua. Changed <strong>im.Capture*</strong> 
+		functions to use boolean values in Lua.</span></span></li>
+		<li><span style="color: #008000"><span class="hist_fixed">Fixed:</span><span
+            style="color: #000000"> RAW format initialization.</span></span></li>
+    </ul>
+    <h3 dir="ltr">
+        <a href="http://sourceforge.net/projects/imtoolkit/files/3.4.2/">Version 3.4.2</a> (26/Jun/2009)</h3>
+<ul>
+	<li><span class="hist_changed">Changed:</span> 
+  	removed &quot;lua5.1.so&quot; dependency in UNIX.</li>
+	<li><span class="hist_fixed">Fixed:</span> AVI format when reading 32 
+	and 16 bpp frames.</li>
+	<li><span class="hist_fixed">Fixed:</span> xmin and ymin check in 
+	im.ProcessCrop and in im.ProcessInsert in Lua.</li>
+</ul>
+<h3 dir="ltr"><a href="http://sourceforge.net/projects/imtoolkit/files/3.4.1/">Version 3.4.1</a> (15/Dec/2008)</h3>
+<ul>
+	<li><span class="hist_changed">Changed:</span> function <strong>
+	imColorHSI_Smax</strong> removed from public, now it is used only 
+	internally. HSI space now uses S already normalized between 0-Smax.</li>
+	<li><span class="hist_fixed">Fixed:</span> <strong>imColorHSI2RGB</strong> 
+	conversion.</li>
+	<li><span class="hist_fixed">Fixed:</span> <strong>imConvertDataType</strong> 
+	when converting a floating point to integer, there were rounding problems.</li>
+	<li><span class="hist_fixed">Fixed:</span> loading and saving two or more files of the same format at the same time.</li>
+</ul>
+<h3 dir="ltr"><a href="http://sourceforge.net/projects/imtoolkit/files/3.4/">Version 3.4</a> (14/Oct/2008)</h3>
+<ul>
+	<li><span class="hist_new">New:</span> imlua_avi, imlua_wmv and imlua_jp2 libraries so the 
+	respective formats can be dynamically loaded 
+	using require.</li>
+	<li><span class="hist_changed">Changed:</span>  
+	<strong>
+  <span style="color: #FF0000">IMPORTANT</span></strong> - 
+	the &quot;imlua_cd&quot; library moved from IM to CD under the name &quot;cdluaim&quot;.</li>
+	<li><span class="hist_changed">Changed:</span>  
+	<strong>
+  <span style="color: #FF0000">IMPORTANT</span></strong> - the support services 
+	(Downloads, Mailing List and CVS) moved from LuaForge to SourceForge.</li>
+	<li><span class="hist_changed">Changed:</span> All dll8 and dll9 DLLs now 
+	have a Manifest file that specifies the correct MSVCR*.DLL.</li>
+	<li><span class="hist_changed">Changed:</span> 
+  	Makefiles for UNIX now uses a compact version of Tecmake that does not need 
+	any installation, just type &quot;make&quot;.</li>
+	<li><span class="hist_changed">Changed:</span> premake files are used now 
+	only internally and were removed from the distribution.</li>
+	<li><span class="hist_changed">Changed:</span>  
+	Copyright notice modified to reflect the registration at INPI (National 
+	Institute of Intellectual Property in Brazil). License continues under the 
+	same terms.</li>
+	<li><span class="hist_fixed">Fixed:</span> reviewed and fixed the parameter 
+	checking of all IMLua processing functions. Also reviewed all IMLua 
+	parameter checking. Thanks to Lucas Lorensi.</li>
+	<li><span class="hist_fixed">Fixed:</span> loading of TIFF format with 
+	old JPEG compression.</li>
+	<li><span class="hist_fixed">Fixed:</span> loading and saving of PNM 
+	format when data in textual format and gray values are greatter than 255.</li>
+	<li><span class="hist_fixed">Fixed:</span> Bicubic and Zero order 
+	interpolation for all geometric operations for pixels near the image border 
+	when increasing image size.</li>
+	<li><span class="hist_fixed">Fixed:</span> Lua samples.</li>
+	<li><span class="hist_fixed">Fixed:</span> ICON format in 64 bits Linux.</li>
+</ul>
+<h3 dir="ltr">Version 3.3 (26/Nov/2007)</h3>
+<ul>
+  <li><span class="hist_new">New:</span> read support for ECW using the 
+	ERMapper ECW JPEG 2000 SDK.</li>
+  <li><span class="hist_changed">Changed:</span> libTIFF updated to version 
+	3.8.2.</li>
+  <li><span class="hist_changed">Changed:</span> libPNG updated to version 
+	1.2.22.</li>
+	<li><span class="hist_changed">Changed:</span> libJasper updated to 
+	libGeoJasper 1.4.0 (using Jasper version 1.900.1). Better support for 
+	counter progress, Geo tags and several speed improvements. New GeoTIFFBox 
+	and XMLPacket attributes.</li>
+	<li><span class="hist_changed">Changed:</span> renamed macro <b>imPutImage</b> 
+  to <b>imcdCanvasPutImage</b>, and added canvas as the first parameter.  </li>
+  <li><span class="hist_changed">Changed:</span> renamed 
+  the <b>imImage</b> Lua 
+  methods to <i><strong>image</strong></i><b>:cdCanvasPutImageRect</b>, <i>
+	<strong>image</strong></i><b>:wdCanvasPutImageRect</b> 
+  and <i><strong>image</strong></i><b>:cdCanvasGetImage</b>, and added canvas as the first parameter. Now <i>imlua_cd</i> 
+  depends on <i>cdlua</i> from CD version 5.0.</li>
+  <li><span class="hist_changed">Changed:</span> metatable names in Lua are 
+  now the same as the C struct names.</li>
+	<li><span class="hist_changed">Changed:</span> new read EXIF tags support 
+	in TIFF format (no write support yet). Renamed attributes &quot;GeoTransMatrix&quot; 
+	and &quot;IntergraphMatrix&quot;, to &quot;GeoTransformationMatrix&quot; and &quot;Intergraph 
+	TransformationMatrix&quot; for libGeoTIFF compatibility. Better support for 
+	known TIFF tags. New support for reading one band of a multiband gray image 
+	in TIFF format. New support for DNG files.</li>
+	<li><span class="hist_fixed">Fixed:</span><strong> imConvertDataType</strong> 
+	gamma function when converting real to/from integer.</li>
+  <li><span class="hist_fixed">Fixed:</span><strong> </strong>small error at 
+  the image border when resampling, rotating or other geometric operations.</li>
+	<li><span class="hist_fixed">Fixed:</span><strong> </strong>
+	<b>imProcessCanny</b> invalid division by zero when input image is all zero.</li>
+	<li><span class="hist_fixed">Fixed:</span><strong> </strong>
+	<b>imFileReadImageInfo</b> when loading MAP images with a scrambled gray 
+    palette. They were incorrectly converted to GREY.</li>
+	<li><span class="hist_fixed">Fixed:</span><strong> </strong>
+	support for IM_ALPHA and 32 bpp in ICO format.</li>
+	<li><span class="hist_fixed">Fixed:</span><strong> </strong>
+	number of lines returned in <b>imProcessHoughLinesDraw</b>.</li>
+</ul>
+<h3 dir="ltr">Version 3.2 (24/Nov/2006)</h3>
+<ul>
+  <li><span class="hist_new">New:</span> <strong>imProcessRotateRef</strong> to rotate relative to a reference point.</li>
+  <li><span class="hist_new">New:</span> geometric distortion <strong>imProcessSwirl</strong>.</li>
+  <li><span class="hist_new">New:</span> <strong>imProcessInterlaceSplit</strong>.</li>
+  <li><span class="hist_new">New:</span> function <strong>imGaussianKernelSize2StdDev</strong>.</li>
+  <li><span class="hist_new">New:</span> convolutions <strong>imProcessBarlettConvolve</strong>, 
+  <strong>imProcessPrewittConvolve</strong>, <strong>imProcessSplineEdgeConvolve</strong>, 
+  <strong>imProcessConvolveDual</strong> and <strong>imProcessConvolveSep</strong>. </li>
+  <li><span class="hist_new">New:</span> &quot;im_kernel.h&quot; module with simple functions to create know pre-defined kernels like sobel, laplacian, gaussian, 
+  etc.</li>
+  <li><span class="hist_new">New:</span> <strong>imVideoCaptureSetInOut</strong> to control input and output in capture devices.</li>
+  <li><span class="hist_new">New:</span> function <strong>imBinMemoryRelease</strong> to release internal memory allocated 
+  by the BinMemory file when saving.</li>
+  <li><span class="hist_new">New:</span> functions for capture device information:
+  <strong>imVideoCaptureDeviceExDesc</strong>, <strong>imVideoCaptureDevicePath</strong> and 
+  <strong>imVideoCaptureDeviceVendorInfo</strong>.</li>
+  <li><span class="hist_new">New:</span> function <strong>imFileOpenAs</strong> 
+  to open a file of a specific format.</li>
+  <li><span class="hist_new">New:</span> functions <strong>
+  imFormatRegisterInternal</strong> and <strong>imFormatRemoveAll</strong> to 
+  control format registration.</li>
+  <li><span class="hist_changed">Changed:</span> <strong>imProcessGaussianConvolve</strong> to used separable convolution and now is stddev is negative will use its 
+  magnitude as the kernel size. Removed Rep functions <strong>imProcessGaussianConvolveRep</strong>, 
+  <strong>imProcessDiffOfGaussianConvolveRep</strong> and 
+  <strong>imGaussianStdDev2Repetitions</strong>.</li>
+  <li><span class="hist_changed">Changed:</span> <strong>imProcessBlend</strong> 
+  to use an image instead of a constant. Old function renamed to <strong>
+  imProcessBlendConst</strong>.</li>
+  <li><span class="hist_changed">Changed:</span> <strong>imFileHandle</strong> prototype. Now the function has an index parameter to specify which handle it should return. 
+  index=0 is always an imBinFile* handle. Use index=1 or greater to return other internal handles that are format 
+  dependent.</li>
+  <li><span class="hist_changed">Changed:</span> the Removed the include &quot;im.h&quot; 
+  to not include &quot;im_lib.h&quot;. &quot;im_lib.h&quot; must be included when necessary.</li>
+  <li><span class="hist_changed">Changed:</span> <strong>imAnalyzeMeasureArea</strong> and 
+  <strong>imAnalyzeMeasurePerimeter</strong> prototypes to include the number of regions as a 
+  parameter. Fixed: these functions to internally initialize the results array to zero (this was necessary and not 
+  documented).</li>
+  <li><span class="hist_changed">Changed:</span> <strong>imProcessFlip</strong> 
+  and <strong>imProcessMirror</strong> so they can be done in-place.</li>
+  <li><span class="hist_fixed">Fixed:</span> missing implementation of
+  <strong>imVideoCaptureOneFrame</strong> in Lua 5.</li>
+  <li><span class="hist_fixed">Fixed:</span> <strong>imAnalyzeFindRegions</strong> when pixel is at the width-1 column.</li>
+  <li><span class="hist_fixed">Fixed:</span> file format identification when
+  <strong>TIFF</strong> identification failed was not closing the file.</li>
+  <li><span class="hist_fixed">Fixed:</span> <strong>imAnalyzeMeasurePerimeter</strong> when perimeter line is at the first or last lines. Thanks to Takeshi Mitsunaga.</li>
+  <li><span class="hist_fixed">Fixed:</span> invalid return value in <strong>imVideoCaptureConnect</strong> in Lua 5.</li>
+  <li><span class="hist_fixed">Fixed:</span> <strong>imProcessRotate</strong> for IM_MAP images.</li>
+  <li><span class="hist_fixed">Fixed:</span> <strong>Lua</strong> binding of 
+  <strong>imFileImageSave</strong>, wrong parameters order. New: image:Save(filename, format) alias for imImage 
+  objects.</li>
+  <li><span class="hist_fixed">Fixed:</span> <strong>BMP</strong> format implementation when reading and writing RGBA 32 bits images.</li>
+  <li><span class="hist_fixed">Fixed:</span> <strong>imFileLoadImageFrame</strong> and 
+  <strong>imFileLoadBitmapFrame</strong> index parameter in Lua.</li>
+  <li><span class="hist_fixed">Fixed:</span> alpha channel allocation in imImage.</li>
+</ul>
+<h3>Version 3.1 (12/Dez/2005)</h3>
+<ul>
+  <li><span class="hist_new">New:</span> Download, Discussion List, Submission of Bugs, Support Requests and Feature Requests, are now available thanks 
+  to the LuaForge site.</li>
+  <li><span class="hist_new">New:</span> Binding for Lua 5</li>
+  <li><span class="hist_new">New:</span> support for alpha in imImage.</li>
+  <li><span class="hist_new">New:</span> organization of the documentation.</li>
+  <li><span class="hist_new">New:</span> in ICON format the TransparencyIndex is used to for IM_MAP images without an alpha 
+  channel.</li>
+  <li><span class="hist_new">New:</span> video capture functions: <strong>imVideoCaptureFormatCount</strong>, 
+  <strong>imVideoCaptureGetFormat</strong> 
+  and <strong>imVideoCaptureSetFormat</strong>, to access the available capture video formats.</li>
+  <li><span class="hist_new">New:</span> functions <strong>imFileLoadImageFrame</strong> and 
+  <strong>imFileLoadBitmapFrame</strong> to reuse the 
+  image data when loading.</li>
+  <li><span class="hist_new">New:</span> function <strong>imFileImageSave</strong>.</li>
+  <li><span class="hist_new">New:</span> function <strong>imImageCreateBased</strong>.</li>
+  <li><span class="hist_new">New:</span> <strong>imProcessInsert</strong>.</li>
+  <li><span class="hist_new">New:</span> compression functions <strong>imCompressDataLZF</strong> and 
+  <strong>imCompressDataUnLZF</strong>, using 
+  libLZF.</li>
+  <li><span class="hist_new">New:</span> module for imBinFile, <strong>IM_FILEHANDLE</strong> that allows to access an already opened file using the 
+  system file handle as file name. Thanks to Frederico Abraham.</li>
+  <li><span class="hist_changed">Changed:</span> in JPEG file format YcbCr are now automatically converted to RGB when loaded. RGB images were already 
+  automatically converted to YCbCr when saved. Now this behavior can be controlled by the AutoYCbCr 
+  attribute.</li>
+  <li><span class="hist_changed">Changed:</span> the <strong>imAnalyzeFindRegions</strong> to include an additional parameter that control if regions 
+  touching the border are computed or not. The function <strong>imProcessPrune</strong> now will only eliminate the 
+  regions in the selected size range.</li>
+  <li><span class="hist_changed">Changed:</span> third party libraries updated to newest versions: libExif, libTIFF, libPNG and zlib. Added OLD JPEG 
+  support in libTIFF.</li>
+  <li>
+  <span class="hist_changed">Changed:</span> optimization flags to ON when building the library in all platforms.</li>
+  <li><span class="hist_changed">Changed:</span> <strong>imProcessPerimeterLine</strong>, 
+  <strong>imAnalyzeMeasurePerimeter</strong>, 
+  <strong>imAnalyzeMeasurePerimArea</strong>, <strong>imAnalyzeMeasureCentroid</strong> and
+  <strong>imAnalyzeMeasurePrincipalAxis</strong> to consider pixels that touch the borders.</li>
+  <li><span class="hist_changed">Changed:</span> macro name <strong>cdPutBitmap</strong> to 
+  <strong>imPutBitmap</strong>.</li>
+  <li><span class="hist_changed">Changed:</span> function names imImageLoad and 
+  <strong>imImageLoadBitmap</strong>, to 
+  <strong>imFileImageLoad</strong> and <strong>imFileImageLoadBitmap</strong>.</li>
+  <li><span class="hist_fixed">Fixed:</span> overflow in <strong>imCalcImageStatistics</strong> fo IM_INT and IM_USHORT images.</li>
+  <li><span class="hist_fixed">Fixed:</span> error management in system file I/O in 
+  <strong>UNIX</strong>.</li>
+  <li><span class="hist_fixed">Fixed:</span> some small defines for 64-bits compatibility in libExif, libPNG and libJPEG.</li>
+  <li><span class="hist_fixed">Fixed:</span> incorrect interpretation of 16 bit data from 
+  <strong>PNG</strong> files.</li>
+  <li><span class="hist_fixed">Fixed:</span> <strong>imFileReadImageInfo</strong> can be called many times with the same index that will return the 
+  correct result without accessing the file again.</li>
+  <li><span class="hist_fixed">Fixed:</span> small bug in sample <strong>iupglcap</strong>.</li>
+  <li><span class="hist_fixed">Fixed:</span> <strong>TIFF</strong> format read for images with multiple bands in ExtraSamples.</li>
+  <li><span class="hist_fixed">Fixed:</span> <strong>ICON</strong> format can_sequence was 0.</li>
+  <li><span class="hist_fixed">Fixed:</span> <strong>imProcessMergeHSI</strong> and 
+  <strong>imProcessSplitHSI</strong> documentation, and 
+  implementation for <strong>IM_BYTE</strong> images.</li>
+  <li><span class="hist_fixed">Fixed:</span> <strong>imProcessRangeContrastThreshold</strong>, 
+  <strong>imProcessLocalMaxThreshold</strong> and
+  <strong>imProcessRankClosestConvolve</strong> when processing near the border.</li>
+  <li><span class="hist_fixed">Fixed:</span> invalid file permissions in UNIX when saving a new file.</li>
+  <li><span class="hist_fixed">Fixed:</span> name for <strong>imProcessLocalMaxThresEstimate</strong>.</li>
+  <li><span class="hist_fixed">Fixed:</span> <strong>imProcessReduceBy4</strong> for images with odd width and/or height.</li>
+  <li><span class="hist_fixed">Fixed:</span> <strong>imAttribTableSet</strong> when replacing an attribute (thanks to Takeshi Mitsunaga).</li>
+  <li><span class="hist_fixed">Fixed:</span> memory leaks in <strong>imConvertToBitmap</strong> and 
+  <strong>imConvertDataType</strong> (thanks to 
+  Takeshi Mitsunaga).</li>
+  <li><span class="hist_fixed">Fixed:</span> <strong>imProcessZeroCrossing</strong> for the last pixel column (thanks to Takeshi Mitsunaga). Also 
+  fixed for some crossings that were lost.</li>
+  <li><span class="hist_fixed">Fixed:</span> <strong>imProcessGrayMorphConvolve</strong> for 
+  <strong>IM_FLOAT</strong> images with 
+  <strong>IM_FLOAT</strong> kernel (thanks to Takeshi Mitsunaga).</li>
+</ul>
+<h3>Version 3.0.3 (14/Oct/2004)</h3>
+<ul>
+  <li><span class="hist_new">New:</span> Image Transform <strong>imProcessDistanceTransform</strong>.</li>
+  <li><span class="hist_new">New:</span> group of functions Image Analysis:
+  <strong>imAnalyzeFindRegions</strong>, <strong>imAnalyzeMeasureArea</strong>,
+  <strong>imAnalyzeMeasurePerimArea</strong>, <strong>imAnalyzeMeasureCentroid</strong>, 
+  <strong>imAnalyzeMeasurePrincipalAxis</strong>, <strong>imAnalyzeMeasureHoles</strong>, imProcessPerimeterLine,
+  <strong>imAnalyzeMeasurePerimeter</strong>, <strong>imProcessPrune</strong>, 
+  <strong>imProcessFillHoles</strong>.</li>
+  <li><span class="hist_new">New:</span> <strong>imConvertMapToRGB</strong> to help loading data as RGB.</li>
+  <li><span class="hist_new">New:</span> sample iupglcap.</li>
+  <li><span class="hist_new">New:</span> <strong>imProcessRenderChessboard</strong> and 
+  <strong>imProcessRenderGrid</strong>.</li>
+  <li><span class="hist_changed">Changed:</span> <strong>imProcessThreshold</strong>, 
+  <strong>imProcessRangeContrastThreshold</strong> and <strong>imProcessLocalMaxThreshold</strong> now also supports 
+  <strong>IM_USHORT</strong> and <strong>IM_INT</strong> 
+  data types. </li>
+  <li><span class="hist_changed">Changed:</span> the default color conversion to binary 
+  so it can be done for all color spaces.</li>
+  <li><span class="hist_changed">Changed:</span> im_process.h to split into 4 files: im_process_pont.h, 
+  im_process_loc.h, im_process_glo.h, im_process_ana.h. But it still 
+  exists and includes the new files for compatibility.</li>
+  <li><span class="hist_changed">Changed:</span> the border extensions in several types of convolution. Rank convolution do not extend the borders. Binary 
+  morphology use zero extension. Gray morphology do not extend the borders.</li>
+  <li><span class="hist_fixed">Fixed:</span> file read with bitmap conversion when original data changes only data type. </li>
+  <li><span class="hist_fixed">Fixed:</span> rank convolution operations that did not accept even kernel sizes.</li>
+  <li><span class="hist_fixed">Fixed:</span> <strong>imProcessHoughLinesDraw</strong> that was ignoring some lines.</li>
+</ul>
+<h3>Version 3.0.2 (25/Aug/2004)</h3>
+
+  <p>- <span class="hist_new">New:</span> utility functions <b><b>imPaletteHighContrast</b></b>, <b>
+  <b>imImageLoadImage</b></b> and <b>
+  <b>imImageLoadBitmap</b></b>. <br>
+  - <span class="hist_new">New:</span> operation <b><b>imProcessNormalizeComponents</b></b>.<br>
+  - <span class="hist_changed">Changed:</span> name <b><b>imProcessGaussianConvolve</b></b> to <b>
+  <b>imProcessGaussianConvolveRep</b></b>. New: 
+  operation <b><b>imProcessGaussianConvolve</b></b> that uses a float kernel. 
+  New: utility functions <b>
+  <b>imGaussianStdDev2Repetitions</b></b> and <b><b>imGaussianStdDev2KernelSize</b></b>.<br>
+  - <span class="hist_changed">Changed:</span> name <b><b>imProcessDiffOfGaussianConvolve</b></b> to <b>
+  <b>imProcessDiffOfGaussianConvolveRep</b></b>. 
+  New: operation <b><b>imProcessDiffOfGaussianConvolve</b></b> that uses a float kernel. <br>
+  - <span class="hist_changed">Changed:</span> <b>IM_GAMUT_BRIGHTCONT</b> 
+  parameters to the interval [-100,100]. Fixed: <b>
+  <b>IM_GAMUT_EXPAND</b></b> and <b><b>IM_GAMUT_BRIGHTCONT</b></b> normalization.<br>
+  - <span class="hist_changed">Changed:</span> logical operations, flag <b> <b>IM_BIT_NOT </b>
+  </b>replaced by operation <b><b>imProcessBitwiseNot</b></b>.<br>
+  - <span class="hist_changed">Changed:</span> <b>imImageSetAttribute</b> count can be -1 for zero terminated data.<br>
+  - <span class="hist_fixed">Fixed:</span> operations <b><b>imProcessBitwiseNot</b></b> and <b>
+  <b>imProcessNegative</b></b> for <b><b>IM_BINARY</b></b> images.<br>
+  - <span class="hist_fixed">Fixed:</span> the <b><b>color_mode_flags</b></b> parameter interpretation by <b>
+  <b>imFileReadImageData</b></b>.
+  <br>
+  - <span class="hist_fixed">Fixed:</span> <b>imProcessEqualizeHistogram</b> and <b>
+  <b>imProcessExpandHistogram</b></b> for 
+  color images. <br>
+  - <span class="hist_fixed">Fixed:</span> <b>imProcessMultipleStdDev</b>.<br>
+  - <span class="hist_fixed">Fixed:</span> <b>imProcessDifusionErrThreshold</b> for <b>
+  <b>IM_GRAY</b></b> images.<br>
+  - <span class="hist_fixed">Fixed:</span> &quot;<b><b>KRN</b></b>&quot; format, internal format is topdown.<br>
+  - <span class="hist_fixed">Fixed:</span> initialization of TGA image_count.</p>
+
+<h3>Version 3.0.1 (22/Apr/2004)</h3>
+
+  <p>- Improved compatibility with the old version, it was missing the load of Map images with <b>
+  <b>imLoadRGB</b></b>.<br>
+  - The FFTW code was from version 2.1.3, not from 2.1.5 as suposed, it was updated. The FFT functions were condensed in 
+  only one file with an &quot;#ifdef&quot; for FFTW version 2 and 3. The FFT functions also were renamed to remove the &quot;W&quot; that 
+  belongs only to the FFTW library.<br>
+  - The <b><b>SetAttribute</b></b> functions now accept NULL in data to remove the attribute.<br>
+  - New: <b><b>imProcessCrossCorrelation</b></b> and <b><b>imProcessAutoCorrelation</b></b> functions.<br>
+  - The <b><b>imCalcGrayHistogram</b></b> function now can calculate the histogram of <b>
+  <b>IM_MAP</b></b> 
+  and <b><b>IM_BINARY</b></b> images.</p>
+
+<h3>Version 3.0 (April 2004)</h3>
+
+  <p>A major rewrite of the library. Everything changed, check the manual, but backward compatibility is kept for old 
+  applications. A new API more flexible, new formats, support for attributes and video, image capture and image 
+  processing. New: color spaces and data types. The library now got a professional look for scientific applications.</p>
+
+<h3>Version 2.6 (May 2002)</h3>
+
+  <p>Correction of bug in resolution reading and writing for format JPEG.</p>
+
+<h3>Version 2.5 (August 2001)</h3>
+
+  <p>Correction of bug in the default GIF compression. Two new callbacks: transparency color index for GIF files and 
+  image description for TIFF files.</p>
+
+<h3>Version 2.4 (February 2000)</h3>
+
+  <p>Change in the treatment of LZW compression in formats TIFF and GIF. Now compression is no longer the default.</p>
+
+<h3>Version 2.3 (June 1998)</h3>
+
+  <p>Close function of the access driver for files in memory corrected. JPEG library updated to 6b. Correction of a 
+  problem with the reading of some JPEG files.</p>
+
+<h3>Version 2.2 (November 1997)</h3>
+
+  <p>The definition of the counter callback was changed to inform, in a parameter, the type of access being performed, 
+  either reading or writing. Type <strong>imCallback</strong> defined to make type casting easier when using function
+  <strong>imRegisterCallback</strong>. Correction of a problem with the makefile in UNIX, which was generating link 
+  errors in some platforms.</p>
+
+<h3>Version 2.1 (October 1997)</h3>
+
+  <p>Correction of a problem with internal memory liberation when reading Map images in TIFF files. Conversion <b>RGB to 
+  Map</b> is now made using the algorithm implemented by LibJPEG. The algorithm of <strong>imResize</strong> was 
+  improved for cases in which the size is being reduced instead of increased. Correction of a problem with functions
+  <strong>imImageInfo</strong> and <strong>imFileFormat</strong>: when the provided file was not in a format recognized 
+  by IM, there was an error in format TGA which caused these functions to access an invalid memory area.</p>
+
+<h3>Version 2.0 (September 1997)</h3>
+
+  <p>The library was virtually rewritten to implement a new structure which allowed greater flexibility, simplifying the 
+  addition of new formats. Formats <strong>TGA</strong>, <strong>PCL</strong>, <strong>JPEG</strong> and <strong>LED</strong> 
+  were added to the list of supported formats, and new functions were added: <strong>imMap2RGB</strong>, <strong>
+  imRGB2Gray</strong>, <strong>imMap2Gray</strong>, <strong>imResize</strong>, <strong>imStretch</strong>.</p>
+
+<h3>Version 1.1 (June 1996)</h3>
+
+  <p>Small corrections to increase portability. Changes in return codes. Identifiers were created to return codes and 
+  predefined parameters. Online manual concluded.</p>
+
+<h3>Version 1.0 (October 1995)</h3>
+
+</body>
+
+</html>

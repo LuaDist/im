@@ -1,0 +1,25 @@
+EXPORTS
+  luaopen_imlua
+  imlua_open
+  imlua_checkimage
+  imlua_newarrayulong
+  imlua_newarrayint
+  imlua_newarrayfloat
+  imlua_argerrorcolorspace
+  imlua_argerrordatatype
+  imlua_toarrayint
+  imlua_toarrayintopt
+  imlua_toarrayulong
+  imlua_toarrayulongopt
+  imlua_toarrayfloat
+  imlua_toarrayfloatopt
+  imlua_toarrayimage 
+  imlua_checkmask
+  imlua_regconstants
+  imlua_pushimage
+  imlua_errormatchsize
+  imlua_errormatchcolor
+  imlua_errormatchdatatype
+  imlua_errormatchcolorspace
+  imlua_errormatch
+

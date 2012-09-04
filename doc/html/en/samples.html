@@ -1,0 +1,170 @@
+<!doctype HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Samples</title>
+<link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+
+<body>
+
+<h2>Complete Samples</h2>
+<p>&nbsp;You can also browse the <a href="../examples/">examples folder</a>. </p>
+<h3><code>im_info</code></h3>
+
+  <p>This is a command line application that displays information obtained from a file using the IM I/O functions, 
+  basically <b>imFile</b> functions. It depends only on the IM main library.</p>
+  <p>Here is an output sample:</p>
+  
+    <pre>IM Info
+  File Name:
+    exif_test.tif
+  File Size: 9.00 Mb
+  Format: TIFF - Tagged Image File Format
+  Compression: NONE
+  Image Count: 1
+  Image #0
+    Width: 2048
+    Height: 1536
+    Color Space: RGB
+      Has Alpha: No
+      Is Packed: Yes
+      Is Top Down: Yes
+    Data Type: byte
+    Data Size: 9.00 Mb
+    Attributes:
+      YResolution: 72.00
+      XResolution: 72.00
+      DateTime: 2004:01:14 11:30:11
+      Make: SONY
+      ResolutionUnit: DPI
+      Model: CD MAVICA
+      Photometric: 2</pre>
+  
+  <p>You can view the source code here: <a href="../examples/im_info.cpp">im_info.cpp</a></p>
+
+<h3><code>im_copy</code></h3>
+
+  <p>This is a command line application that copies all the information from one file to another using the IM I/O 
+  functions. It depends only on the IM main library. It is usefull for testing the drivers.</p>
+  <p>You can view the source code here: <a href="../examples/im_copy.cpp">im_copy.cpp</a></p>
+
+<h3><code>proc_fourier</code></h3>
+
+  <p>This is another command line application that process an image in the Fourier Frequency Domain. In this domain the 
+  image is a map of the spatial frequencies of the original image. It depends on the IM main library and on the IM_FFTW 
+  library. The FFTW is a very fast Fourier transform, but is contaminated by the GPL license, so everything must be also 
+  GPL. To use it in a commercial application you must contact the MIT and pay for a commercial license.</p>
+  <p>Se also <a href="doxygen/group__transform.html)">Reference / Image Processing / Domain 
+  Transform Operations</a>.</p>
+  <p>You can view the source code here: <a href="../examples/proc_fourier.cpp">proc_fourier.cpp</a></p>
+
+<h3><code>im_view</code></h3>
+
+  <p>This application uses IUP and CD to create a window with a canvas and draw the image into that canvas. It is a very 
+  simple application, no zoom nor scrollbar management. The image is obtained from a file using the IM I/O functions, 
+  but using the <b>imImage</b> structure to make the implementation easier.</p>
+  <p>For more IUP <a target="_blank" href="http://www.tecgraf.puc-rio.br/iup">http://www.tecgraf.puc-rio.br/iup</a> and 
+  more CD <a target="_blank" href="http://www.tecgraf.puc-rio.br/cd">http://www.tecgraf.puc-rio.br/cd</a></p>
+  <p>You can view the source code here <a href="../examples/im_view.c">im_view.c</a>, or download it with some makefiles
+  <a href="../download/im_view.zip">im_view.zip</a>.</p>
+
+<h3><code>glut_capture</code></h3>
+
+  <p>This application uses GLUT and OpenGL to create a window with a canvas and draw the image into that canvas. But the 
+  image is obtained from a capture device. The image can be processed before display and a sequence of captured images 
+  can be saved in an AVI file during capture.</p>
+  <p>You can view the source code here: <a href="../examples/glut_capture.c">glut_capture.c</a></p>
+
+<h3><code>iupglcap</code></h3>
+
+  <p>This application uses IUP and OpenGL to create a window with two canvases 
+	and draw a video capture image into one canvas. A processed image can be 
+	displayed in the second canvas. It can also process frames from a video 
+	file. It is very useful for Computer Vision courses. You can download the 
+	source code here: <a href="../download/iupglcap.zip">iupglcap.zip</a>. You will 
+	also need to download IUP, CD and IM libraries for the 
+  compiler you use.</p>
+
+<h3><code>IMLAB</code></h3>
+
+  <p>If you want to see a more complex application with all the IM features explored the IMLAB is a complete example. It 
+  displays each image in an individual image with zoom and pan capabilities. All the IM processing operations are 
+  available together with some extra operations.</p>
+  <p>For more IMLAB go to <a href="http://www.tecgraf.puc-rio.br/~scuri/imlab">
+  http://www.tecgraf.puc-rio.br/~scuri/imlab</a>.</p>
+
+<h3>Lua Samples</h3>
+
+  <p>To retreive information from an image file:</p>
+  
+    <pre>require&quot;imlua&quot;
+local ifile, error = im.FileOpen(file_name)
+local format, compression, image_count = ifile:GetInfo()
+local format_desc = im.FormatInfo(format)
+for i = 1, image_count do
+   local width, height, color_mode, data_type, error = ifile:ReadImageInfo(i)
+end
+ifile:Close()    </pre>
+  
+  <p>To edit pixels in an image and save the changes:</p>
+  
+    <pre>require&quot;imlua&quot;
+
+local image = im.FileImageLoad(filename)
+
+local r = image[0]
+local g = image[1]
+local b = image[2]
+
+for row = 0, image:Height() - 1, 10 do
+	for column = 0, image:Width() - 1, 10 do
+		r[row][column] = 0
+		g[row][column] = 0
+		b[row][column] = 0
+	end
+end
+
+image:Save(&quot;edit.bmp&quot;, &quot;BMP&quot;)</pre>
+  
+  <p>To render noise:</p>
+  
+    <pre>require&quot;imlua&quot;
+require&quot;imlua_process&quot;
+local image = im.ImageCreate(500, 500, im.RGB, im.BYTE)
+im.ProcessRenderRandomNoise(image) 
+image:Save(&quot;noise.tif&quot;, &quot;TIFF&quot;) </pre>
+  
+  <p>To render using the CD library:</p>
+  
+    <pre>require&quot;imlua&quot;
+require&quot;cdlua&quot;
+require&quot;cdluaim&quot;
+
+local image = im.ImageCreate(500, 500, im.RGB, im.BYTE)
+local canvas = image:cdCreateCanvas()  -- Creates a CD_IMAGERGB canvas
+
+canvas:Activate()  
+canvas:Background(cd.EncodeColor(255, 255, 255))
+canvas:Clear()
+fgcolor = cd.EncodeColor(255, 0, 0) -- red
+fgcolor = cd.EncodeAlpha(fgcolor, 50) -- semi transparent
+canvas:Foreground(fgcolor)
+canvas:Font(&quot;Times&quot;, cd.BOLD, 24)
+canvas:Text(100, 100, &quot;Test&quot;)
+canvas:Line(0,0,100,100)
+canvas:Kill()
+
+image:Save(&quot;new.bmp&quot;, &quot;BMP&quot;)  </pre>
+  
+  <p>Check the files <a href="../download/samples_imlua5.tar.gz">samples_imlua5.tar.gz</a> 
+	or <a href="../download/samples_imlua5.zip">samples_imlua5.zip</a> for several samples in Lua. For 
+  some of them you will need also the CD and the IUP libraries. You can also 
+	browse the <a href="../examples/">examples folder</a>. </p>
+
+
+</body>
+
+</html>

@@ -1,0 +1,145 @@
+<!doctype HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Processing Guide</title>
+<link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+
+<body>
+
+<h2>Image Processing Guide</h2>
+<h3 align="left"><a name="Using">Using</a></h3>
+
+  <p>You should include one or more headers: &lt;im_process_ana.h&gt;, 
+  &lt;im_process_glo.h&gt;, &lt;im_process_loc.h&gt; and &lt;im_process_pon.h&gt;. And you must 
+  link with the &quot;im_process.a/im_process.lib&quot; library. In Lua call 
+	require&quot;imlua_process&quot;.</p>
+  <p>The processing operations are very simple to use. Usually you just have to 
+  call the respective function. But you will have to ensure yourself that the 
+  image parameters for the input and output data are correct. Here is an 
+  example:</p>
+  
+    <pre>void imProcessFlip(const imImage* src_image, imImage* dst_image);</pre>
+  
+  <p>The processing operations are exclusive for the <b>imImage</b> structure. 
+  This makes the implementation cleaner and much easier to process color images 
+  since the planes are separated. But remmber that you can always use the 
+  <strong>imImageInit</strong> function to initializes an <b>imImage</b> structure with 
+  your own buffer.</p>
+<p>The image data of the output image is assumed to be zero before any 
+operation. This is always true after creating a new image, but if you are 
+reusing an image for several operation use <strong>imImageClear</strong> to zero 
+the image data between operations.&nbsp;</p>
+
+<h3><a name="new">New Operations</a></h3>
+
+  <p>An operation complexity is directly affected by the number of data types it 
+  will operate.</p>
+  <p>If it is only one, than it is as simple as:</p>
+  
+    <pre>void DoProc(imbyte* data, int width, int height)
+{
+  for (int y = 0; y &lt; height; y++)
+  {
+    for (int x = 0; x &lt; width; x++)
+    {
+      // Do something
+      int offset = y * width + x;
+
+      data[offset] = 0;
+    }
+  }
+}
+
+void SampleProc(imImage* image)
+{
+  // a loop for all the color planes
+  for (int d = 0; d &lt; image-&gt;depth; d++)
+  {
+    // Notice that the same operation may be used to process each color component
+    DoProc((imbyte*)image-&gt;data[d], image-&gt;width, image-&gt;height);
+  }
+}</pre>
+  
+  <p>Or if you want to use templates to allow a more number of types:</p>
+  
+    <pre>template &lt;class T&gt; 
+void DoProc2(const T* src_data, T* dst_data, int count)
+{
+  for (int i = 0; i &lt; count; i++)
+  {
+    src_data[i] = dst_data[i];
+    
+    // or a more low level approach
+    
+    *src_data++ = *dst_data++;
+  }
+}
+
+// This is a sample that do not depends on the spatial distribution of the data.
+// It uses data[0], the pointer where all depths depends on.
+
+void SampleProc2(const imImage* src_image, imImage* dst_image)
+{
+  int total_count = src_image-&gt;count * src_image-&gt;depth; 
+  switch(src_image-&gt;data_type)
+  {
+  case IM_BYTE:
+    DoProc((imbyte*)src_image-&gt;data[0], (imbyte*)dst_image-&gt;data[0], total_count);
+    break; 
+  case IM_USHORT:
+    DoProc((imushort*)src_image-&gt;data[0], (imushort*)dst_image-&gt;data[0], total_count);
+    break; 
+  case IM_INT: 
+    DoProc((int*)src_image-&gt;data[0], (int*)dst_image-&gt;data[0], total_count);
+    break; 
+  case IM_FLOAT: 
+    DoProc((float*)src_image-&gt;data[0], (float*)dst_image-&gt;data[0], total_count);
+    break; 
+  case IM_CFLOAT: 
+    DoProc((imcfloat*)src_image-&gt;data[0], (imcfloat*)dst_image-&gt;data[0], total_count);
+    break;
+  }
+}</pre>
+  
+  <p>The first sample can be implemented in C, but the second sample can not, it 
+  must be in C++. Check the manual and the source code for many operations 
+  already available.</p>
+
+<h3><a name="count">Counters</a></h3>
+
+  <p>To add support for the counter callback to a new operation is very simple. 
+  The following code shows how:</p>
+  
+    <pre>int counter = imCounterBegin(&quot;Process Test 1&quot;);
+imCounterTotal(counter, count_steps, &quot;Processing&quot;);
+
+for (int i = 0; i &lt; count_steps; i++)
+{
+  // Do something
+
+
+  if (!imCounterInc(counter))
+    return IM_ERR_COUNTER;
+}
+
+imCounterEnd(counter);</pre>
+  
+  <p>Every time you call <b>imCounterTotal</b> between a <b>imCounterBegin</b>/<b>imCounterEnd</b> for the same counter means 
+  that you are starting a count at that counter. So one operation can be 
+  composed by many sub-operations and still have a counter to display progress. 
+  For example, each call to the <b>imFileReadImageData</b> starts a new 
+  count for the same counter.</p>
+  <p>A nice thing to do when counting is not to display too small progress. To 
+  accomplish that in the implementation of the counter callback consider a 
+  minimum delay from one display to another.</p>
+  <p>See <a href="doxygen/group__counter.html">
+  Utilities / Counter</a>.</p>
+
+
+</body>
+
+</html>

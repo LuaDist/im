@@ -1,0 +1,244 @@
+<!doctype HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<title>Other Toolkits</title>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+
+<body>
+
+<h2>Comparing IM with Other Imaging Toolkits</h2>
+
+  <p>Still today there is a need for something easier to code and understand in 
+  Imaging. The available free libraries are sometimes close, sometimes very far 
+  from &#8220;easier&#8221;. IM is an unexplored solution and proposed as a simple and clean 
+  one. It is another Imaging tool with a different approach to the many 
+  possibilities in the area. Its organization was designed so it can be used for 
+  teaching Imaging concepts. We invite you to try it.</p>
+  <p>First we list some libraries mainly target for storage, then some 
+  scientific libraries, and then a small comparsion of IM and those libraries.</p>
+  <hr>
+  <p>Here are some free storage libraries:</p>
+  <p><b>Imlib2</b></p>
+  
+    <p class="info">Last Update 2003-09 / Version 1.1.0<br>
+    <a target="_blank" href="http://www.enlightenment.org/pages/imlib2.html">
+    http://www.enlightenment.org/pages/imlib2.html</a> <br>
+    Language C<br>
+    Documentation is terrible. Depends on the X-Windows System libraries.<br>
+    It is designed for display/rendering performance.</p>
+  
+  <p><b>Corona</b></p>
+  
+    <p class="info">Last Update 2003-09 / Version 1.0.2<br>
+    <a target="_blank" href="http://corona.sourceforge.net/">
+    http://corona.sourceforge.net/</a><br>
+    Language C++<br>
+    Very simple library. Only a few formats. Only bitmap images, no video. <br>
+&nbsp;</p>
+  
+  <p><b>PaintLib</b></p>
+  
+    <p class="info">Last Update 2004-04 / Version 2.61<br>
+    <a target="_blank" href="http://www.paintlib.de/paintlib/">
+    http://www.paintlib.de/paintlib/</a><br>
+    Language C++<br>
+    A very simple library.<br>
+    Has an interesting ActiveX component. Only bitmap images, no video.</p>
+  
+  <p><b>NetPBM</b></p>
+  
+    <p class="info">Last Update 2004-07 / Version 10.23<br>
+    <a target="_blank" href="http://netpbm.sourceforge.net/">
+    http://netpbm.sourceforge.net/</a> <br>
+    Language C<br>
+    A traditional library that starts at the Pbmplus package more than 10 years 
+    ago.<br>
+    Very stable, it has support for the PNM format family and many processing 
+    operations. <br>
+    &nbsp;Only bitmap images, no video.</p>
+  
+  <p><b>DevIL ***</b></p>
+  
+    <p class="info">Last Update 2004-06 / Version 1.6.7 <br>
+    <a target="_blank" href="http://openil.sourceforge.net/">
+    http://openil.sourceforge.net/</a> <br>
+    Language C (Has also a C++ Wrapper)<br>
+    Called initially OpenIL. Supports many formats and have a very interesting 
+    API, that works very similar the OpenGL API (that's why the original name). 
+    Also supports the display in several graphics systems. Has several data 
+    types as OpenGL has.</p>
+  
+  <p><b>FreeImage ***</b></p>
+  
+    <p class="info">Last Update 2004-07 / Version 3.4.0<br>
+    <a target="_blank" href="http://freeimage.sourceforge.net/">
+    http://freeimage.sourceforge.net/</a> <br>
+    Language C (Has also a C++ Wrapper)<br>
+    Supports many formats. Many data types, but only RGB and subclasses (gray, 
+    map, etc).<br>
+    Very well written, stable and simple to use.</p>
+  
+  <p><b>ImageMagick and GraphicsMagick ***</b></p>
+  
+    <p class="info">Last Update 2004-07 / Version 6.0.3 || Last Update 2004-04 / Version 
+    1.0.6<br>
+    <a target="_blank" href="http://www.imagemagick.org/">
+    http://www.imagemagick.org/</a> ||
+    <a target="_blank" href="http://www.graphicsmagick.org/">
+    http://www.graphicsmagick.org/</a><br>
+    Language C (Has also a C++ Wrapper)<br>
+    The two libraries are listed together because GraphicsMagick is totally and 
+    explicitly based on ImageMagick version 5.5.2.<br>
+    They have very similar or identical APIs but the development process is 
+    completely different. GraphicsMagick propose a more organized development 
+    process (a more precise comparison requires detailed knowledge about the two 
+    libraries).<br>
+    These are very complete libraries. They support lots of file formats, 
+    several color spaces, but use only the byte data type.<br>
+    They use a big image structure with everything inside. Image creation may 
+    involve about 40 parameters.</p>
+  
+  <hr>
+  <p>And here are some free scientific libraries:</p>
+  <p><b>TINA</b></p>
+  
+    <p class="info">Last Update 2002-03 / Version 4.0.2<br>
+    <a href="http://www.niac.man.ac.uk/Tina">http://www.niac.man.ac.uk/Tina</a>
+    <br>
+    Language C<br>
+    Very UNIX oriented. Lots of functions for Computer Vision. Developed by a 
+    researcher of the University of Manchester.</p>
+  
+  <p><b>XITE</b></p>
+  
+    <p class="info">Last Update 2002-09 / Version 3.44<br>
+    <a target="_blank" href="http://www.ifi.uio.no/forskning/grupper/dsb/Software/Xite/">
+    http://www.ifi.uio.no/forskning/grupper/dsb/Software/Xite/</a> <br>
+    Language C<br>
+    Very UNIX oriented, but compiles fine in Windows. Several separated command 
+    line routines, it is a package not a library. But inspired several aspects 
+    of the IM library. Seems to be not updated anymore. Developed by a 
+    researcher of the University of Oslo.</p>
+  
+  <p><b>VIGRA</b></p>
+  
+    <p class="info">Last Update 2004-09 / Version 1.3.0<br>
+    <a href="http://kogs-www.informatik.uni-hamburg.de/~koethe/vigra/">
+    http://kogs-www.informatik.uni-hamburg.de/~koethe/vigra/</a>&nbsp; <br>
+    Language C++<br>
+    STL based. Many operators. Developed by a researcher of the University of 
+    Hamburg.</p>
+  
+  <p><b>Wild Magic</b></p>
+  
+    <p class="info">Last Update 2004-09 / Version 2.4<br>
+    <a href="http://www.magic-software.com/">http://www.magic-software.com/</a>
+    <br>
+    Language C++<br>
+    Game development oriented, very rich in mathematics. Developed by Magic 
+    Software, Inc.</p>
+  
+  <p><b>VIPS</b></p>
+  
+    <p class="info">Last Update 2004-09 / Version 7.10.2<br>
+    <a href="http://www.vips.ecs.soton.ac.uk/">http://www.vips.ecs.soton.ac.uk/</a><br>
+    Language C/C++<br>
+    Support for very large images. Powerful macro laguage. Good implementation. 
+    Many functions. Developed by researchers at the University of Southampton 
+    and The National Gallery in the UK. </p>
+  
+  <p><b>MegaWave2</b></p>
+  
+    <p class="info">Last Update 2004-06 / Version 2.3<br>
+    <a href="http://www.cmla.ens-cachan.fr/Cmla/Megawave/">
+    http://www.cmla.ens-cachan.fr/Cmla/Megawave/</a><br>
+    Language C<br>
+    Very UNIX oriented. Good implementation. Many functions. C preprocessor. 
+    Developed by French researchers at l'École Normale Supérieure de Cachan. </p>
+  
+  <p><b>JAI </b></p>
+  
+    <p class="info">Last Update 2003-07 / Version 1.1.2<br>
+    <a target="_blank" href="http://java.sun.com/products/java-media/jai/index.jsp">
+    http://java.sun.com/products/java-media/jai/index.jsp</a> <br>
+    Language Java<br>
+    It is becoming more and more popular. Java is slow than C/C++ but the 
+    performance of the image processing operations is very acceptable. Also it 
+    has several C optimized functions. Developed by the Sun Corporation.</p>
+  
+  <p><b>OpenCV ***</b></p>
+  
+    <p class="info">Last Update 2004-08 / Version 4.0<br>
+    <a target="_blank" href="http://sourceforge.net/projects/opencvlibrary/">
+    http://sourceforge.net/projects/opencvlibrary/</a> <br>
+    Language C/C++<br>
+    Only a few formats but lots of image processing operations. One of the most 
+    interesting libraries available. It is more than an Imaging library, it is 
+    designed for Computer Vision. Developed by Intel Russian researchers.</p>
+  
+  <p><b>VTK ***</b></p>
+  
+    <p class="info">Last Update 2004-03 / Version 4.2<br>
+    <a target="_blank" href="http://www.vtk.org/">http://www.vtk.org/</a> <br>
+    Language C++<br>
+    Another very important library. Very huge. Much more than Imaging, includes 
+    also 3D Computer Graphics and Visualization. Has a book about the library. 
+    Developed by Kitware Inc.</p>
+  
+  <hr>
+  <p><b>IM</b></p>
+  
+    <p class="info">Last Update 2004-08 / Version 3.0.2<br>
+    <a href="http://www.tecgraf.puc-rio.br/im">http://www.tecgraf.puc-rio.br/im</a><br>
+    Language C/C++<br>
+    Support for several data types, i.e. scientific images and different 
+    color spaces. Support for input and output of image sequences. Support for 
+    generic image attributes (metadata), which includes several standard TIFF 
+    tags, GeoTIFF tags and Exif tags. Image storage and capture data can be 
+    accessed using an image structure or with raw data. Internal implementation 
+    in C++ but with a simple C API. Code is portable for Windows and UNIX. Many 
+    image processing operations.</p>
+  
+  <hr>
+  <h3>Comparsion</h3>
+  <p>The idea behind IM was to create a toolkit that was not so complex as 
+  OpenCV, neither so big as VTK, but that can be used as a solid base to the 
+  development of thesis and dissertations, as for commercial applications. </p>
+  <p>As the academic environment is very heterogeneous the IM project choose 
+  some directives:</p>
+  <ul>
+    <li>Portability (Windows and UNIX)</li>
+    <li>C API</li>
+    <li>Totally Free, Open Source</li>
+    <li>Focus in Scientific Applications</li>
+    <li>Easy to Learn</li>
+    <li>Easy to Reuse</li>
+  </ul>
+  <p>Considering these directives there are only a few similar toolkits. Making 
+  some exceptions the following should be mentioned: </p>
+  <ul>
+    <li>JAI - Java, Sun.com</li>
+    <li>VIGRA - C++ / STL Based, University</li>
+    <li>VIPS - Large Images / Macros, University</li>
+    <li>VTK - C++ / Huge / Visualization, Kitware.com</li>
+    <li>OpenCV &#8211; &#8220;best&#8221; similar choice, Intel.com </li>
+  </ul>
+  <p>Today OpenCV and VTK are the most professional and complete choices of free 
+  libraries that are similar to IM. But they are more complicated than IM. For 
+  instance VTK it is very large, it has about 700 C++ classes. </p>
+  <p>Although OpenCV has many resources, its code is very hard to reuse. The 
+  simplicity of the IM code, mainly the image processing routines, make it a 
+  good reference to be reused by other applications extracting only the code 
+  needed with little changes. And can be used as an complement to learn image 
+  processing algorithms and techniques.</p>
+  <hr>
+  <p>This page was last updated in Sep 2004.</p>
+
+
+</body>
+
+</html>

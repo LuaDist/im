@@ -1,0 +1,304 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Guide</title>
+<link rel="stylesheet" type="text/css" href="../style.css">
+<style type="text/css">
+.style1 {
+	color: #FF0000;
+}
+.style2 {
+	color: #008000;
+}
+.style3 {
+	color: #0000FF;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Guide</h1>
+<h3><a name="startup">Getting Started</a></h3>
+
+  <p>It is important to understand that IM is based in 4 concepts: <b>Image Representation</b>, <b>Image Storage</b>, <b>
+  Image Processing</b> and <b>Image Capture</b>. The following picture illustrates the relation between theses concepts.</p>
+  <p align="center"><img border="0" src="imaging.gif" width="704" height="346"></p>
+  <p>IM does not have support for <b>Image Visualization</b>, because we think this is a task for a graphics library 
+  like OpenGL, Windows GDI or <a target="_blank" href="http://www.tecgraf.puc-rio.br/cd/">CD 
+  - Canvas Draw</a>.</p>
+  <p><b>Image Representation</b> describes the image model and its details. Which color systems are going to be used, 
+  which data types, how the data is organized in memory, and how other image characteristics are accessed.</p>
+  <p><b>Image Storage</b> describers the file format model and how images are obtained or saved. <b>Image Capture</b> 
+  describes the access to a capture device and obtaining an image from it. <b>Image Processing</b> describes the image 
+  processing operations.</p>
+  <p>There are infinite ways to implement these concepts. There is no common definition in the literature, but there is 
+  a standard called Programmer's Imaging Kernel System (PIKS) published at the ISO/IEC 12087. PIKS is a very complete 
+  and also complex standard, very hard to implement. There are only a few implementations available, and the one that I 
+  know is commercial software, Pixel Soft of William Pratt <a target="_blank" href="http://www.pixelsoft.com/">
+  http://www.pixelsoft.com/</a>, also author of several books on the subject.</p>
+  <p>But we want something easier to implement and understand. The free available libraries that we found where 
+  sometimes close to what we want, sometimes very far. So we developed our own. </p>
+  <p>The documentation contains <b>Overview, Guide, Samples</b> and <b>Reference</b> sections for each one of the IM 
+  concepts. </p>
+  <p>The <b>Guide</b> is where you are going to find the explanation about the concepts and decisions made during the 
+  library design. It is the best place to understand how things works. </p>
+  <p>The <b>Reference</b> contains pure essential information for function and structure usage. But there is no 
+  information on how to put the functions to work together. It is generated automatically from the source code using 
+  Doxygen, this means also that the include files (*.h) are very well commented.</p>
+
+<h3><a name="buildapp">Building Applications</a></h3>
+
+  <p>Inside you code you should at least include the &lt;im.h&gt; header and link with the &quot;im.lib/libim.a/libim.so&quot; library. 
+  This library contains all the <b>Image Representation</b> functions and all the <b>Image Storage</b> functions (with 
+  the exception of the external formats: AVI, JP2 and WMV).</p>
+  <p>Each external format or processing usually needs a &lt;im_xx.h&gt; file and a &quot;im_xx.lib/libim_xx.a/libim_xx.so&quot; file.</p>
+  <p>Even if your application is only in C, you must link with a C++ capable linker. Using Tecmake set &quot;LINKER := g++&quot; 
+  in your &quot;config.mak&quot; when compiling with gcc (UNIX and Windows).</p>
+  <p>The download files list includes the <a href="download_tips.html">Tecgraf/PUC-Rio Library Download Tips</a> 
+  document, with a description of all the available binaries.</p>
+
+<h3 align="left"><a name="buildlib">Building the Library</a> </h3>
+
+<p>In the Downloads you will be able to find pre-compiled binaries for many 
+platforms, all those binaries were built using Tecmake. Tecmake is a command line multi compiler build tool 
+based on GNU make, available at
+  <a target="_blank" href="http://www.tecgraf.puc-rio.br/tecmake">http://www.tecgraf.puc-rio.br/tecmake</a>. Tecmake is 
+  used by all the Tecgraf libraries and many applications.</p>
+<p>You do not need to install Tecmake, scripts for Posix and Windows systems are already included in the source code package. Just type &quot;make&quot; 
+in the command line on the main folder and all libraries and executables will be 
+build.</p>
+<p>In Linux, check the &quot;<a href="building.html">Building Lua, IM, CD and IUP in 
+Linux</a>&quot; guide.</p>
+<p>In Windows, check the &quot;<a href="buildwin.html">Building Lua, IM, CD and IUP in 
+Window</a>&quot; guide.</p>
+<p>If you decide to install Tecmake, the Tecmake configuration 
+files (*.mak) are available at the &quot;src&quot; folder, and are very easy to understand. 
+In the<b> </b>main folder, and in each source folder, there are files 
+named 
+<i>make_uname.bat</i> that build the libraries using <b>Tecmake</b>. To build 
+for Windows using Visual C 9.0 (2008) for example, just execute <i>&quot;make_uname 
+vc9&quot;</i> in the iup main folder, or for the DLLs type <i>
+&quot;make_uname dll9&quot;</i>. The Visual Studio workspaces with the respective projects 
+available in the source package is for debugging purposes only.</p>
+<p>Make sure you have all the dependencies for the library you want installed, 
+see the documentation bellow.</p>
+<p>If you are going to build all the libraries, 
+the makefiles and projects expect the following directory tree:</p>
+<pre>\mylibs\
+        im\
+        lua5.1\</pre>
+<p>To control that location set the TECTOOLS_HOME environment variable to the 
+folder were the Lua libraries are installed.</p>
+<h4>Libraries Dependencies</h4>
+<pre>im -&gt; <span class="style2"><strong>libjpeg</strong></span> (included)
+   -&gt; <strong><span class="style2">libpng</span></strong>  (included)
+   -&gt; <strong><span class="style2">libtiff</span></strong> (included)
+   -&gt; <strong><span class="style2">zlib</span></strong>
+   -&gt; <strong><span class="style2">liblzf</span></strong>  (included)
+   -&gt; <strong><span class="style2">libexif</span></strong> (included)
+im_jp2 -&gt; im
+       -&gt; <strong><span class="style2">libJasper</span></strong> (included)
+im_avi -&gt; im
+       -&gt; <span class="style3"><strong>vfw32</strong></span> (system - Windows)
+im_wmv -&gt; im
+       -&gt; <strong><span class="style3">wmvcore</span></strong> (system - Windows)
+im_ecw -&gt; im
+       -&gt; <strong><span class="style3">NCSEcw</span></strong> (system)
+im_capture -&gt; <strong><span class="style3">strmiids</span></strong> (system - Windows)
+im_process -&gt; im
+im_fftw -&gt; im
+        -&gt; <strong><span class="style2">fftw</span></strong> (included)
+imlua51 -&gt; im
+        -&gt; <span class="style1"><strong>lua5.1</strong></span>
+imlua_capture51 -&gt; imlua51
+                -&gt; im_capture
+imlua_fftw51 -&gt; imlua51
+             -&gt; im_fftw
+imlua_process51 -&gt; imlua51
+                -&gt; im_process</pre>
+<p>As a general rule (excluding system dependencies and included third party 
+libraries): IM has NO external dependencies, and IMLua depends on Lua.</p>
+<p>The Lua bindings for IUP, CD and IM (Makefiles and Pre-compiled binaries) 
+depend on the <a href="http://luabinaries.luaforge.net/">LuaBinaries</a> 
+distribution. So if you are going to build from source, then use the <strong>LuaBinaries</strong> 
+source package also, not the <strong>Lua.org</strong> original source package. 
+If you like to use another location for the Lua files define LUA_SUFFIX, LUA_INC, 
+LUA_LIB and LUA_BIN before using Tecmake.</p>
+
+<h3><a name="CD">CD Compatibility</a></h3>
+
+  <p>IM version 2 was designed to perfectly work with the <a target="_blank" href="http://www.tecgraf.puc-rio.br/cd/">CD 
+  - Canvas Draw</a> toolkit. Version 3 has many more options and only for a subset of the images called Bitmaps can be 
+  used with the CD functions. Theses images have data type <b>IM_BYTE</b>, and color mode 
+  <b>IM_RGB, IM_GRAY, 
+  IM_MAP</b> or <b>IM_BINARY</b>. They can not have the flags <b>IM_TOPDOWN</b> and 
+  <b>IM_PACKED</b>. 
+  But it can have the flag <b>IM_ALPHA</b> for <b>IM_RGB</b> images.</p>
+  <p>You can convert an image to a bitmap version of it using the function <b>imConvertToBitmap</b>, see
+  <a href="doxygen/group__convert.html">Image Representation / Conversion</a>.</p>
+  <p>Function <strong>cdCanvasGetImageRGB</strong> captures an image from the active canvas. Functions 
+	<strong>cdCanvasPutImageRect*</strong> draw a client image on the active canvas. These 
+  functions allow reducing or increasing the image when drawing.</p>
+  <p align="left">For applications in systems with only 256 colors available, we recommend the use of function <strong>
+  cdCanvasPalette</strong> before drawing the image, to improve its quality.</p>
+  <p align="left">When using the imImage structure the macro <strong>
+	imcdCanvasPutImage</strong> can be used. It is defined as:</p>
+  <div align="left">
+    
+      <pre>#define imcdCanvasPutImage(_canvas, _image, _x, _y, _w, _h, _xmin, _xmax, _ymin, _ymax)     \
+  {                                                                         \
+    if (_image-&gt;color_space == IM_RGB)                                      \
+    {                                                                       \
+      if (image-&gt;has_alpha)                                                 \
+        cdCanvasPutImageRectRGBA(_canvas, _image-&gt;width, _image-&gt;height,    \
+                          (unsigned char*)_image-&gt;data[0],                  \
+                          (unsigned char*)_image-&gt;data[1],                  \
+                          (unsigned char*)_image-&gt;data[2],                  \
+                          (unsigned char*)_image-&gt;data[3],                  \
+                          _x, _y, _w, _h, _xmin, _xmax, _ymin, _ymax);      \
+      else                                                                  \
+        cdCanvasPutImageRectRGB(_canvas, _image-&gt;width, _image-&gt;height,     \
+                          (unsigned char*)_image-&gt;data[0],                  \
+                          (unsigned char*)_image-&gt;data[1],                  \
+                          (unsigned char*)_image-&gt;data[2],                  \
+                          _x, _y, _w, _h, _xmin, _xmax, _ymin, _ymax);      \
+    }                                                                       \
+    else                                                                    \
+      cdCanvasPutImageRectMap(_canvas, _image-&gt;width, _image-&gt;height,       \
+                        (unsigned char*)_image-&gt;data[0], _image-&gt;palette,   \
+                        _x, _y, _w, _h, _xmin, _xmax, _ymin, _ymax);        \
+  }</pre>
+    
+  </div>
+  <p align="left">CD Library is the Tecgraf 2D graphics library available at
+  <a target="_blank" href="http://www.tecgraf.puc-rio.br/cd">http://www.tecgraf.puc-rio.br/cd</a>.</p>
+
+<h3><a name="opengl">OpenGL Compatibility</a></h3>
+
+  <p>The function <b>glDrawPixels</b> accepts several data types and color modes. Here are the <b>format</b> and
+  <b>type</b> mapping for OpenGL usage:</p>
+  
+    <pre>           <b>IM</b>             &lt;-&gt;  <b>OpenGL</b></pre>
+    <pre>        <b>color_mode             format</b>
+IM_RGB|IM_ALPHA|IM_PACKED  = GL_RGBA               
+IM_RGB|IM_PACKED           = GL_RGB
+IM_GRAY                    = GL_LUMINANCE
+IM_GRAY|IM_ALPHA|IM_PACKED = GL_LUMINANCE_ALPHA</pre>
+    <pre>        <b>data_type              type</b>
+IM_BYTE                    = GL_UNSIGNED_BYTE
+IM_BINARY                  = GL_BITMAP
+IM_USHORT                  = GL_UNSIGNED_SHORT
+IM_INT                     = GL_INT
+IM_FLOAT                   = GL_FLOAT</pre>
+  
+  <p>There is no mapping for non <b>IM_PACKED</b> images so if you use unpacked planes (ex: you use the 
+  <b>imImage</b> structure) then you have to convert one data into another, the function 
+  <b>imConvertPacking</b> 
+  does this, so you just have to keep an extra buffer for the display image and call this function only when your 
+  original image has changed. See <a href="doxygen/group__convert.html">Image 
+  Representation / Conversion</a>. For example:</p>
+  
+    <pre>imConvertPacking(image-&gt;data[0], gl_data, image-&gt;width, image-&gt;height, image-&gt;depth, image-&gt;data_type, 0);
+glPixelStorei(GL_UNPACK_ALIGNMENT, 1); /* data alignment must be 1 */
+
+glDrawPixels(image-&gt;width, image-&gt;height, GL_RGB, GL_UNSIGNED_BYTE, gl_data);</pre>
+  
+  <p>When loading color image data you can use the function imConvertMapToRGB to convert in-place IM_MAP image data into 
+  IM_RGB after loading it from file. For example:</p>
+  
+    <pre>if (imColorSpace(color_mode) == IM_MAP)
+{
+  long palette[256];
+  int palette_count, packed = 1; /* OpenGL uses packed RGB */
+  imFileGetPalette(ifile, palette, &amp;palette_count);
+  imConvertMapToRGB(gl_data, width*height, depth, packed, palette, palette_count);
+}</pre>
+  
+  <p>If you are using the <strong>imImage</strong> structure then you can 
+	instead use the function <strong>imImageGetOpenGLData</strong>.</p>
+<p>If you just want to save your OpenGL buffer then you can use:</p>
+  
+    <pre>glPixelStorei(GL_PACK_ALIGNMENT, 1); /* data alignment must be 1 */
+glReadPixels(x, y, width, height, GL_RGB, GL_UNSIGNED_BYTE, gl_data);
+
+ifile = imFileNew(filename, format, &amp;error);
+error = imFileWriteImageInfo(ifile, width, height, IM_RGB|IM_PACKED, IM_BYTE);
+error = imFileWriteImageData(ifile, gl_data);
+imFileClose(ifile); </pre>
+  
+  <p>And when using the <strong>imImage</strong> structure then you can 
+	instead use the function <strong>imImageCreateFromOpenGLData</strong>. For 
+	instance:</p>
+  
+    <pre>glPixelStorei(GL_PACK_ALIGNMENT, 1); /* data alignment must be 1 */
+glReadPixels(x, y, width, height, GL_RGB, GL_UNSIGNED_BYTE, gl_data);
+
+imImage* image = imImageCreateFromOpenGLData(width, height, GL_RGB, gl_data); 
+error = imFileImageSave(filename, format, image);</pre>
+  
+  <p>You can also do this 
+  inside a loop to create an animation.&nbsp;</p>
+
+<h3><a name="compat">IM 2.x Compatibility</a></h3>
+
+  <p>In version 3.0 the library was completely rewritten. And we changed the main API to allow more powerful features. 
+  But the old API is still available for backward compatibility. Version 3 is also binary compatible with version 2. </p>
+  <p>The only change that must be updated in old applications if they where recompiled is some error code definitions. 
+  If you use them in a case there will cause a compiler error because <b>IM_ERR_READ</b> and 
+  <b>IM_ERR_WRITE</b> 
+  are now defined as <b>IM_ERR_ACCESS</b> both.</p>
+
+<h3 align="left"><a name="migra">Migrating OLD Code</a> </h3>
+
+  <p>The old API is very inefficient because the file is opened and close three times, for: 
+  <b>imFileInfo</b>,
+  <b>imImageInfo</b> and <b>imLoadRGB</b>/<b>imLoadMap</b>. There is no room for attributes, so we use 
+  the callbacks. And we can not load sequences of images. For these reasons we change the API. </p>
+  <p>If you would like to migrate your code using the old API the most important thing to change is the memory 
+  allocation. For RGB images instead of allocating 3 separate pointers you should allocate only one pointer with room 
+  for all three planes. If you still want to keep the three pointers, just do <b>green = red + width*height</b> 
+  and <b>blue = red + 2*width*height</b>.</p>
+  <p>Also you should change your callbacks usage for attributes access using <b>imFileGetAttribute</b> and 
+  <b>imFileSetAttribute</b>. <b>IM_RESOLUTION_CB</b> is replaced by the attributes &quot;<b>XResolution</b>&quot;, &quot;<b>YResolution</b>&quot;, 
+  &quot;<b>ResolutionUnit</b>&quot;. <b>IM_GIF_TRANSPARENT_COLOR_CB</b> is replaced by &quot;<b>TransparencyIndex</b>&quot; 
+  and <b>IM_TIF_IMAGE_DESCRIPTION_CB</b> by &quot;<b>Description</b>&quot;.</p>
+  <p>Except <b>IM_COUNTER_CB</b> that is not an attribute, still works with a callback, but now we implement a 
+  counter system for all the library including loading, saving and processing. The user just use the 
+  <b>imCounterSetCallback</b> (like before) to register it counter callback, now there are a few more parameters and a 
+  user data pointer. See <a href="doxygen/group__counter.html">Utilities / Counter</a>.
+  </p>
+  <p>The function calls to <b>imImageInfo</b> and <b>imLoadRGB</b>/<b>imLoadMap</b> will be replaced 
+  by a sequence of function calls to <b>imFileOpen</b>/<b>imFileNew</b>,&nbsp; 
+  <b>imFileReadImageInfo</b>/<b>imFileWriteImageInfo</b>,
+  <b>imFileReadImageData</b>/<b>imFileWriteImageData</b> and <b>imFileClose</b>. See
+  <a href="doxygen/group__file.html">Image Storage</a>.</p>
+
+<h3><a name="names">Names Convention</a></h3>
+
+  <p>To improve the readability of the code we use a very simple naming convention:</p>
+  <ul>
+    <li>Global Functions and Types - &quot;im[Object][Action]&quot; using first capitals (imFileOpen)</li>
+    <li>Local Functions and Types - &quot;i[Object][Action]&quot; using first capitals (iTIFFGetCompIndex)</li>
+    <li>Local Static Variables - same as local functions and types (iFormatCount)</li>
+    <li>Local Static Tables - same as local functions and types with &quot;Table&quot; suffix (iTIFFCompTable)</li>
+    <li>Variables and Members - no prefix, all lower case (width)</li>
+    <li>Defines and Enumerations - all capitals (IM_ERR_NONE) </li>
+  </ul>
+
+<h3><a name="cpp">C x C++ Usage</a></h3>
+
+  <p>The library main API is in C. We adopt this because of the many C programmers out there. Some of the API is also 
+  available in C++ for those addicted to classes.</p>
+  <p>Internally C++ is used to implement the format driver base architecture. A virtual base class that every drivers 
+  inherits from. This made a lot of things easier to the driver development. But we keep it simple, no multiple 
+  inheritance, no exception handling, no complicated classes.</p>
+  <p>But because we need several data types C++ templates were inevitable used (since we do not like long macros 
+  everywhere). But they are used only for processing functions, not classes.</p>
+
+
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1">
+<title>Capture</title>
+<link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1>Image Capture</h1>
+
+  <p>The capture support is designed for live video, it is not for passive 
+  digital cameras that only transfer the already taken pictures. Are valid: USB 
+  cameras (like most Webcams), Firewire (IEEE 1394) cameras, and analog video 
+  capture boards, including TV Tuners. These are called devices.</p>
+  <p>The capture functions allows you to:</p>
+  <ul>
+    <li>list the available devices</li>
+    <li>connect to a device</li>
+    <li>configure the device</li>
+    <li>retrieve an image</li>
+  </ul>
+  <p>You can list the installed devices and once you connect to a specific 
+  device you can control its parameters. Each connected device captures data 
+  frames continuously when in Live state otherwise it stays in standby. You can 
+  connect to more than one device at the same time. </p>
+  <p>Once connected the user can retrieve frames from the device any time. This 
+  can be done with one function call, or inside a closed loop for several 
+  frames, or inside an idle function to periodically update the screen. The user 
+  is not notified when a new frame is available, but every time the user 
+  retrieve a frame, if successful, it is a new frame, old frames are discarded 
+  when a new frame arrives.</p>
+  <p>Currently it is implemented only in Microsoft Windows. </p>
+
+
+</body>
+
+</html>

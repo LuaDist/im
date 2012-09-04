@@ -1,0 +1,141 @@
+<!doctype HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Processing Samples</title>
+<link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+
+<body>
+
+<h2>Image Processing Samples</h2>
+<h3><a name="proc_fourier">Fourier Transform</a></h3>
+
+  <p>This is another command line application that process an image in the 
+  Fourier Frequency Domain. In this domain the image is a map of the spatial 
+  frequencies of the original image. It depends on the IM main library and on 
+  the IM_FFTW library. The FFTW is a very fast Fourier transform, but is 
+  contaminated by the GPL license, so everything must be also GPL. To use it in 
+  a commercial application you must contact the MIT and pay for a commercial 
+  license.</p>
+  <p>Se also
+  <a href="doxygen/group__transform.html">
+  Reference / Image Processing / Domain Transform Operations</a>.</p>
+  <p>You can view the source code here: <a href="../examples/proc_fourier.cpp">proc_fourier.cpp</a></p>
+
+<h3><a name="houghlines">Hough Lines</a></h3>
+
+  <p>The Hough transform can be used to detect lines in an image. But it results 
+  are highly dependent on other operations done before and after the transform. 
+  Here you can see a small pseudo code that illustrates a possible sequence of 
+  operations to detect lines using the Hough transform.</p>
+  <p>First the canny operator will isolate the borders, the threshold will mark 
+  the candidate pixels. After the transform the local maximum are isolated to 
+  detect the line parameters of the lines that have many pixels from the 
+  candidate ones. The last operation will just draw the detected lines over the 
+  original gray scale image.</p>
+  
+    <pre>imProcessCanny(in,out,stddev)
+imProcessHysteresisThreshold(in,out,low,high)
+
+imProcessHoughLines(in,out)
+imProcessLocalMaxThreshold(in,out,size,min)
+
+imProcessHoughLinesDraw(in1,in2,in3,out)</pre>
+  
+  <p>Or a more complete sequence using another approach:</p>
+  
+    <pre>gray = imImageCreate(width, height, IM_GRAY, IM_BYTE);
+binary = imImageCreate(width, height, IM_BINARY, IM_BYTE);
+binary2 = imImageClone(binary);
+
+rhomax = sqrt(width*width +height*height)/2;
+hough_height=2*rhomax+1;
+hough = imImageCreate(180, hough_height, IM_GRAY, IM_INT);
+hough_binary = imImageCreate(180, hough_height, IM_BINARY, IM_BYTE);
+
+imConvertColorSpace(rgb, gray);
+
+// very important step, the quality of the detected lines are highly dependent on
+// the quality of the binary image
+// Using a simple threshold like in here maybe not a good solution for your image
+imProcessPercentThreshold(gray, binary, percent=50); 
+
+// eliminates unwanted objects, depending on the quality of the threshold
+// this step can be skiped
+imProcessBinMorphClose(binary, binary2, 3, 1); 
+imProcessPrune(binary2, binary, 4, size=100, 0);
+
+// Is there any holes in the objects?
+// Holes also have borders...
+imProcessFillHoles(binary, binary2, 4);
+
+// leave only the object borders
+imProcessPerimeterLine(binary2, binary);  
+
+// here you should have near only the lines you want to detect.
+// if there are more or less lines that you want redo the previous steps
+
+imProcessHoughLines(binary, hough);
+imProcessLocalMaxThreshold(hough, hough_binary, 7, 100);
+
+// this is optional, it will draw the results
+imProcessHoughLinesDraw(gray,hough,hough_binary,draw_hough); </pre>
+  
+  <p>In the result of <b>imProcessLocalMaxThreshold</b> there will be several white 
+  pixels. They represent the detected lines. Defining:</p>
+  
+    <pre>Y = a * X + b
+cos(theta) * X + sin(theta) * Y = rho
+
+where:
+  X = x - width/2
+  Y = y - height/2
+
+because the origin of the transform is in the center of the image</pre>
+  
+  <p>Each coordinate in the transform has values in the intervals:</p>
+  
+    <pre>theta = 0 .. 179  (horizontal coordinate of the hough space)
+rho = -rhomax .. rhomax    (vertical coordinate of the hough space, 
+                            vertically centered in the image)
+
+where:
+    rhomax = sqrt(width*width + height*height) /2            (width and height of the original image)</pre>
+  
+  <p>For each (xi, yi) point found in the result image:</p>
+  
+    <pre>theta = xi;
+rho = yi - rhomax;
+
+then:
+
+a = -cos(theta)/sin(theta);
+b = (rho + (width/2)*cos(theta) + (height/2)*sin(theta))/sin(theta);</pre>
+  
+  <p>The complex formula for &quot;b&quot; came from the fact that we have to shift the 
+  result to the image origin at (0,0).</p>
+
+<h3><a name="analysis">Image Analysis</a></h3>
+
+  <p>The following pseudo code ilustrates the sequence of operations to measure 
+  regions. This is also called Blob Analysis.</p>
+  <p>First the regions are isolated from background using a threshold. Then 
+  regions too small or too large are eliminated and the holes are filled in this 
+  example. After the regions are found we can start measuring properties of the 
+  regions like area and perimeter.</p>
+  
+    <pre>imProcessSliceThreshold(in, out, level1, level2)
+imProcessPrune(in, out, connect, size1, size2)
+imProcessFillHoles(in, out, connect)
+imAnalyzeFindRegions(in, out, connect)
+imAnalyzeMeasureArea(in, area)
+imAnalyzeMeasurePerimeter(in, perim)</pre>
+  
+
+
+</body>
+
+</html>
