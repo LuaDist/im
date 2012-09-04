@@ -5,7 +5,7 @@
 # Please note that the package source code is licensed under its own license.
 
 project(im C CXX)
-cmake_minimum_required(VERSION 2.6)
+cmake_minimum_required(VERSION 2.8)
 include ( cmake/dist.cmake )
 include ( lua )
 
@@ -254,26 +254,21 @@ if(LUA_FOUND)
 
 # imlua_process5_omp
 	if(OPENMP_FOUND)
-#~ 		add_library(imlua_process_omp MODULE src/lua5/modules/imlua_process.c src/lua5/modules/imlua_kernel.c )
-		add_library(imlua_process_omp MODULE ${SRC_IMLUA_PROCESS} )
-		target_link_libraries(imlua_process_omp imlua im_process_omp )
-
 		# IMPORTANT !!! Do NOT set these flags on source files !!!!
+		install_lua_module(imlua_process_omp  ${SRC_IMLUA_PROCESS} LINK imlua im_process_omp)
 		set_target_properties(imlua_process_omp PROPERTIES
 				COMPILE_FLAGS "${OpenMP_C_FLAGS} ${OpenMP_CXX_FLAGS} -DIM_PROCESS"
 #~ 				COMPILE_FLAGS "${OpenMP_C_FLAGS} ${OpenMP_CXX_FLAGS} "
-				LINK_FLAGS "${OpenMP_C_FLAGS} ${OpenMP_CXX_FLAGS}"
-				PREFIX ""
-				OUTPUT_NAME imlua_process_omp)
+				LINK_FLAGS "${OpenMP_C_FLAGS} ${OpenMP_CXX_FLAGS}" )
 
-		install(TARGETS imlua_process_omp DESTINATION ${INSTALL_CMOD})
+#		install(TARGETS imlua_process_omp DESTINATION ${INSTALL_CMOD} )
 	endif()
 
 # imlua_fftw5
 	install_lua_module ( imlua_fftw src/lua5/modules/imlua_fftw.c resources/imlua_fftw.def LINK  imlua  im_fftw )
 
 # imlua_jp2
-	  install_lua_module ( imlua_jp2 src/lua5/modules/imlua_jp2.c resources/imlua_jp2.def LINK imlua im_jp2 )
+	install_lua_module ( imlua_jp2 src/lua5/modules/imlua_jp2.c resources/imlua_jp2.def LINK imlua im_jp2 )
 
 # imlua_avi
 	if (TARGET im_avi )
@@ -302,5 +297,3 @@ install_header ( include/ )
 install_data ( COPYRIGHT README )
 # install documentation
 install_doc ( doc/ )
-
-
