@@ -1,0 +1,21 @@
+<map id="structs" name="structs">
+<area shape="rect" id="node1" href="$group__wmv.html" title="WMV &#45; Windows Media Video Format" alt="" coords="371,5,669,37"/>
+<area shape="rect" id="node2" href="$group__krn.html" title="KRN &#45; IM Kernel File Format" alt="" coords="407,61,633,93"/>
+<area shape="rect" id="node3" href="$group__led.html" title="LED &#45; IUP image in LED" alt="" coords="420,117,620,149"/>
+<area shape="rect" id="node4" href="$group__pcx.html" title="PCX &#45; ZSoft Picture" alt="" coords="437,173,603,205"/>
+<area shape="rect" id="node5" href="$group__tga.html" title="TGA &#45; Truevision Graphics Adapter File" alt="" coords="367,229,673,261"/>
+<area shape="rect" id="node6" href="$group__tiff.html" title="TIFF &#45; Tagged Image File Format" alt="" coords="389,285,651,317"/>
+<area shape="rect" id="node7" href="$group__png.html" title="PNG &#45; Portable Network Graphic Format" alt="" coords="363,341,677,373"/>
+<area shape="rect" id="node8" href="$group__pnm.html" title="PNM &#45; Netpbm Portable Image Map" alt="" coords="381,397,659,429"/>
+<area shape="rect" id="node9" href="$group__ecw.html" title="ECW &#45; ECW JPEG 2000" alt="" coords="417,453,623,485"/>
+<area shape="rect" id="node10" href="$group__ico.html" title="ICO &#45; Windows Icon" alt="" coords="435,509,605,541"/>
+<area shape="rect" id="node11" href="$group__jpeg.html" title="JPEG &#45; JPEG File Interchange Format" alt="" coords="369,565,671,597"/>
+<area shape="rect" id="node14" href="$group__ras.html" title="RAS &#45; Sun Raster File" alt="" coords="429,621,611,653"/>
+<area shape="rect" id="node15" href="$group__raw.html" title="RAW &#45; RAW File" alt="" coords="447,677,593,709"/>
+<area shape="rect" id="node16" href="$group__avi.html" title="AVI &#45; Windows Audio&#45;Video Interleaved RIFF" alt="" coords="344,733,696,765"/>
+<area shape="rect" id="node17" href="$group__bmp.html" title="BMP &#45; Windows Device Independent Bitmap" alt="" coords="348,789,692,821"/>
+<area shape="rect" id="node18" href="$group__jp2.html" title="JP2 &#45; JPEG&#45;2000 JP2 File Format" alt="" coords="384,845,656,877"/>
+<area shape="rect" id="node19" href="$group__gif.html" title="GIF &#45; Graphics Interchange Format" alt="" coords="381,901,659,933"/>
+<area shape="rect" id="node20" href="$group__sgi.html" title="SGI &#45; Silicon Graphics Image File Format" alt="" coords="359,957,681,989"/>
+<area shape="rect" id="node13" href="$group__file.html" title="Image Storage" alt="" coords="7,481,135,513"/>
+</map>

@@ -1,0 +1,125 @@
+<html>
+
+<head>
+<meta name="GENERATOR" content="Microsoft FrontPage 12.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Language" content="en-us">
+<title>Lua Binding</title>
+<meta http-equiv="Content-Type" content="text/html; charset=us-ascii">
+<link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+
+<body>
+
+<h2>Lua Binding</h2>
+<h3><a name="Overview">Overview</a></h3>
+
+  <p>
+    All the IM functions are available in Lua, with a few exceptions. We call it <strong>
+        ImLua</strong>. To use them the general application will do 
+	require&quot;imlua&quot;, and require&quot;imluaxxxx&quot; to all other secondary libraries that 
+	are needed. The functions and definitions will be available under the table 
+	&quot;im&quot; using the following name rules:</p>
+    <pre>imXxx  -&gt; im.Xxx    (for functions)<br />IM_XXX -&gt; im.XXX    (for definitions)<br />imFileXXX(ifile,... -&gt; ifile:XXX(...     (for methods)
+imImageXXX(image,... -&gt; image:XXX(...    (for methods)<br /></pre>
+    <p>
+        New functions (without equivalents in C) were implemented to create and 
+		destroy objects that do not exist in C. For instance functions were 
+		developed to create and destroy palettes. All the metatables have the 
+		&quot;tostring&quot; metamethod implemented to help debuging. The <strong>imImage</strong> 
+		metatable has the &quot;index&quot; metamethod so you can address its data 
+		directly in Lua. Some functions were modified to receive those objects 
+		as parameters.</p>
+    <p>
+        Also the functions which receive values by reference in C were modified. 
+		Generally, the values of parameters that would have their values 
+		modified are now returned by the function in the same order.</p>
+    <p>
+        Notice that, as opposed to C, in which enumeration flags are<i> </i>
+		combined with the bitwise operator OR, in Lua the flags are added 
+		arithmetically.</p>
+    <p>
+        In Lua all parameters are checked and a Lua error is emitted when the 
+		check fails.</p>
+    <p>
+        All the objects are garbage collected by the Lua garbage collector. </p>
+    <h3>
+        Initialization</h3>
+    <p>
+        <strong>Lua</strong> 5.1 &quot;require&quot; can be used for all the <strong>ImLua</strong>
+        libraries. You can use <b>require</b>&quot;<b>imlua</b>&quot; and so on, but the 
+		LUA_CPATH must also contains the following:
+    </p>
+    <pre>&quot;./lib?51.so;&quot;    [in UNIX]
+
+&quot;.\\?51.dll;&quot;     [in Windows]
+</pre>
+    <p>
+        Also compatible with Lua 5.2, just replace the &quot;51&quot; suffix by &quot;52&quot;.</p>
+<p>
+        The <a href="http://luabinaries.luaforge.net/">LuaBinaries</a> 
+		distribution already includes these modifications on the default search 
+		path.</p>
+    <p>
+        The simplest form <b>require</b>&quot;<b>im</b>&quot; and so on, can not be used 
+		because there are IM dynamic libraries with names that will conflict 
+		with the names used by <b>require</b>
+        during search.</p>
+    <p>
+        Additionally you can statically link the <strong>ImLua</strong> 
+		libraries, but you must call the initialization functions manually. The <strong><font face="Courier New">
+            imlua_open</font></strong> function is declared in the header file <strong><font
+                face="Courier New">imlua</font><font face="Courier New" size="2">.</font><font face="Courier New">h</font></strong>, 
+		see the example below:</p>
+
+    <div align="center">
+      <center>
+      <table cellpadding="10" cellspacing="0" style="border-width: 0; border-collapse: collapse" bordercolor="#111111" id="AutoNumber1">
+        <tr>
+          <td>
+          <pre>#include &lt;lua.h&gt;
+#include &lt;lualib.h&gt;
+#include &lt;lauxlib.h&gt;
+<b><font color="#FF0000">#include &lt;imlua.h&gt;</font></b></pre>
+          <pre>void main(void)
+{
+  lua_State *L = lua_open();
+
+  luaopen_string(L);
+  luaopen_math(L);
+  luaopen_io(L);
+
+<b>  <font color="#FF0000">imlua_open(L);</font>
+</b>
+  lua_dofile(&quot;myprog.lua&quot;);
+
+  lua_close(L);
+}</pre>
+          </td>
+        </tr>
+      </table>
+      </center>
+    </div>
+
+<h3><a name="Integration with ImLua">Integration with CDLua</a></h3>
+
+  <p>In <b>CDLua</b> there is an additional library providing simple functions 
+	to map the
+  <strong>imImage</strong>
+  structure to the <strong>cdBitmap</strong> structure. And some facilities to 
+	draw an image in a CD canvas. See also the <a target="_blank" href="http://www.tecgraf.puc-rio.br/cd">
+	CD documentation</a> and the <a href="doxygen/group__imlua.html">IM Lua 5 
+	Binding</a> reference.</p>
+  <p>Color values and palettes can be created and used transparently in both 
+	libraries. Palettes and color values are 100% compatible between CD and IM.</p>
+    <h3>
+        Reference</h3>
+    <p>
+        See also the <a href="doxygen/group__imlua.html">ImLua 5 Binding 
+		Reference</a><span
+            style="color: #ff0000">.</span></p>
+
+
+</body>
+
+</html>

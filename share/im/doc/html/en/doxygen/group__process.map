@@ -1,0 +1,26 @@
+<map id="structs" name="structs">
+<area shape="rect" id="node1" href="$group__imageenhance.html" title="Image Enhance Utilities in Lua" alt="" coords="251,5,493,37"/>
+<area shape="rect" id="node2" href="$group__resize.html" title="Image Resize" alt="" coords="312,61,432,93"/>
+<area shape="rect" id="node3" href="$group__openmp.html" title="OpenMP Utilities" alt="" coords="301,117,443,149"/>
+<area shape="rect" id="node4" href="$group__tonegamut.html" title="Tone Gamut Operations" alt="" coords="275,173,469,205"/>
+<area shape="rect" id="node5" href="$group__render.html" title="Synthetic Image Render" alt="" coords="273,229,471,261"/>
+<area shape="rect" id="node6" href="$group__remotesens.html" title="Remote Sensing Operations" alt="" coords="260,285,484,317"/>
+<area shape="rect" id="node7" href="$group__rank.html" title="Rank Convolution Operations" alt="" coords="256,341,488,373"/>
+<area shape="rect" id="node8" href="$group__transform.html" title="Other Domain Transform Operations" alt="" coords="229,397,515,429"/>
+<area shape="rect" id="node9" href="$group__logic.html" title="Logical Arithmetic Operations" alt="" coords="255,453,489,485"/>
+<area shape="rect" id="node10" href="$group__histo.html" title="Histogram Based Operations" alt="" coords="257,509,487,541"/>
+<area shape="rect" id="node11" href="$group__colorproc.html" title="Color Processing Operations" alt="" coords="256,565,488,597"/>
+<area shape="rect" id="node12" href="$group__arithm.html" title="Arithmetic Operations" alt="" coords="283,621,461,653"/>
+<area shape="rect" id="node14" href="$group__morphgray.html" title="Morphology Operations for Gray Images" alt="" coords="215,677,529,709"/>
+<area shape="rect" id="node15" href="$group__fourier.html" title="Fourier Transform Operations" alt="" coords="253,733,491,765"/>
+<area shape="rect" id="node16" href="$group__quantize.html" title="Additional Image Quantization Operations" alt="" coords="211,789,533,821"/>
+<area shape="rect" id="node17" href="$group__convolve.html" title="Convolution Operations" alt="" coords="277,845,467,877"/>
+<area shape="rect" id="node18" href="$group__geom.html" title="Geometric Operations" alt="" coords="281,901,463,933"/>
+<area shape="rect" id="node19" href="$group__analyze.html" title="Image Analysis" alt="" coords="305,957,439,989"/>
+<area shape="rect" id="node20" href="$group__threshold.html" title="Threshold Operations" alt="" coords="284,1013,460,1045"/>
+<area shape="rect" id="node21" href="$group__point.html" title="Point Based Custom Operations" alt="" coords="245,1069,499,1101"/>
+<area shape="rect" id="node22" href="$group__effects.html" title="Special Effects" alt="" coords="307,1125,437,1157"/>
+<area shape="rect" id="node23" href="$group__procconvert.html" title="Image Conversion" alt="" coords="295,1181,449,1213"/>
+<area shape="rect" id="node24" href="$group__stats.html" title="Image Statistics" alt="" coords="304,1237,440,1269"/>
+<area shape="rect" id="node25" href="$group__morphbin.html" title="Morphology Operations for Binary Images" alt="" coords="209,1293,535,1325"/>
+</map>

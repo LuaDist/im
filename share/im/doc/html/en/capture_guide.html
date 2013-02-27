@@ -1,0 +1,82 @@
+<!doctype HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Capture Guide</title>
+<link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h2>Capture Guide</h2>
+<h3><a name="Using">Using</a></h3>
+
+  <p>You can list the installed capture devices using: </p>
+  
+    <pre>int imVideoCaptureDeviceCount(void)
+const char* imVideoCaptureDeviceDesc(int device)</pre>
+  
+  <p>If a device was removed or added in run time, you must update the list 
+  calling:</p>
+  
+    <pre>int imVideoCaptureReloadDevices(void)</pre>
+  
+  <p>To handle devices you must create a <b>imVideoCapture</b> structure 
+  using the function <b>imVideoCaptureCreate</b>. With this handle you can 
+  manage any of the available devices, but only one device. The handle must be 
+  destroyed with <b>imVideoCaptureDestroy</b>.</p>
+  <p>If you want to access two or more devices at the same time you must create 
+  two different structures, but be aware that this usually work for high quality 
+  devices like Firewire and USB 2.0. Webcams that use USB1.x can be used if 
+  connected to different USB 2.0 controllers.</p>
+  <p>The next thing is to connect to a specific device, because all the other 
+  remaining functions depends on this connection. Just call <b>imVideoCaptureConnect</b> with one of the available capture device numbers.</p>
+  <p>You control when a device start processing frames using <b>imVideoCaptureLive</b>. Once live the frames can be captured using 
+  <b>imVideoCaptureFrame</b>. Or you can use <b>imVideoCaptureOneFrame</b>, 
+  it will start capturing, returns the captured frame and stop capturing.</p>
+  <p>But before capturing a frame you may want to configure the device. You can 
+  do it using Attributes, or at least in Windows you can do it using the 
+  configuration dialogs with a call to <b>imVideoCaptureShowDialog</b>.</p>
+  <p>A very simple sequence of operations to capture just one frame from the 
+  first device available:</p>
+  
+    <pre>imVideoCapture* vc = imVideoCaptureCreate(); 
+if (!imVideoCaptureConnect(vc, 0))
+  return;
+
+int width, height;
+imVideoCaptureGetImageSize(vc, &amp;width, &amp;height);
+
+// initializes the data pointer
+void* data = malloc(width*height*3);
+
+imVideoCaptureOneFrame(vc, data, IM_RGB);
+imVideoCaptureDestroy(vc);</pre>
+  
+  <p>The capture library is completely independent from the other libraries. It 
+  just uses the same description of the data buffer used in <b>imFileReadImageData</b>.</p>
+
+<h3><a name="Building">Building</a></h3>
+
+  <p>You should include the &lt;im_capture.h&gt; header and link with the 
+  &quot;im_capture.lib&quot; library. This library is independent of all IM libraries.&nbsp; 
+	In Lua call require&quot;imlua_capture&quot;.</p>
+  <p>To link with the capture library in Windows using Visual C you will need 
+  the file &quot;<a href="../download/strmiids.zip">strmiids.lib</a>&quot;. To link it 
+  using Dev-C++ or Mingw 3 you will need the &quot;<b>im_capture.dll</b>&quot;.</p>
+  <p>To compile the capture source code you will need the Direct X 9 SDK. Notice 
+  that since Direct X uses COM, CoInitialize(NULL) is called when the devices 
+  are enumerated.</p>
+  <p>For more information on Direct X capture, i.e. Direct Show see:</p>
+  
+    <p>
+    <a href="http://msdn.microsoft.com/library/en-us/directx9_c/directX/htm/directshow.asp">
+    http://msdn.microsoft.com/library/en-us/directx9_c/directX/htm/directshow.asp</a></p>
+  
+
+
+</body>
+
+</html>

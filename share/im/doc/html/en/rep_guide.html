@@ -1,0 +1,134 @@
+<!doctype HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Representation Guide</title>
+<link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+
+<body>
+
+<h2>Image Representation Guide</h2>
+<h3 align="left"><a name="raw">Raw Data Buffer</a></h3>
+
+  <p align="left">To create a raw image buffer you can simply use the utility function:</p>
+  
+    <div align="left">
+      <pre>int width, height, color_mode, data_type;
+int size = imImageDataSize(width, height, color_mode, data_type);
+void* buffer = malloc(size);</pre>
+    </div>
+  
+  <div align="left">
+    <p align="left">So if the data type is <strong>IM_FLOAT</strong>, we could write:</div>
+  <div align="left">
+    
+      <pre>float* idata = (float*)buffer;</pre>
+    
+  </div>
+  <div align="left">
+    <p align="left">Then to locate the pixel at line y, column x, component d simply write:
+  </div>
+  <div align="left">
+    
+      <pre>float value;
+if (is_packed) 
+  value = idata[y*width*depth + x*depth + d]
+else
+  value = idata[d*width*height + y*width + x]</pre>
+    
+  </div>
+  <div align="left">
+    <p align="left">But notice that this code will return values at different pixel locations for top down and bottom up 
+    orientations.</div>
+
+<div align="left">
+  <h3 align="left"><a name="imImage">imImage</a></h3>
+</div>
+
+  <div align="left">
+    <p align="left">To use the <b>imImage</b> structure you must include the &lt;im_image.h&gt; header.</div>
+  <div align="left">
+    <p align="left">To create an <b>imImage</b> structure you can do it in several ways:</div>
+
+<div align="left">
+  
+    
+      <pre>int width, height, color_space, data_type, palette_count;
+long *palette;
+void* buffer
+
+imImage* image;
+
+image = imImageCreate(width, height, color_space, data_type) 
+image = imImageInit(width, height, color_space, data_type, buffer, palette, palette_count) 
+image = imImageDuplicate(image) 
+image = imImageClone(image) </pre>
+    
+    <p>The <b>imImageInit</b> function allow you to initialize an <b>imImage</b> structure with an user allocated 
+    buffer. This is very useful if you use your own image structure and wants to temporally use the image processing 
+    functions of the library.</p>
+    <p>To destroy the <b>imImage</b> structure simply call <b>imImageDestroy(image)</b>. If you do &quot;<b>data[0] 
+    = NULL</b>&quot; before calling the destroy function then the raw data buffer will not be destroyed.</p>
+  
+</div>
+
+  <div align="left">
+    <p align="left">The <b>imImage</b> data buffer is allocated like the raw data buffer.
+  </div>
+  <div align="left">
+    <p align="left">The separated color components are arranged one after another, but we access the data through an 
+    array of pointers each one starting at the beginning of each color component. So 
+    <b>image-&gt;data[0]</b> 
+    contains a pointer to all the data, and <b>image-&gt;data[1]</b> is a short cut to the second component and so 
+    on. With this you can use <b>image-&gt;data[0]</b> as a starting point for all the data, or use it as the first 
+    component.</div>
+
+<div align="left">
+  
+    
+      <pre>count = width*height;
+unsigned char* idata = (unsigned char*)image-&gt;data[0];
+for (int i = 0; i &lt; count; i++)
+{
+  idata[i] = 255;
+}</pre>
+    
+    <p>or</p>
+    
+      <pre>for (int d = 0; d &lt; image-&gt;depth; d++)
+{
+  unsigned char* idata = (unsigned char*)image-&gt;data[d];
+
+  for (int y = 0; y &lt; height; y++)
+  {
+    for (int x = 0; x &lt; width; x++)
+    {
+      int offset = y * width + x; 
+
+      idata[offset] = 255;
+    }
+  }
+}</pre>
+    
+  
+</div>
+<div align="left">
+  
+    <p align="left">The <b>imImage</b> structure contains all the image information obtained from a file, because it 
+    also has support for alpha, attributes and the palette. The palette can be used for 
+    <b>IM_MAP</b> images and 
+    for pseudo color of <b>IM_GRAY</b> images.</p>
+  
+</div>
+
+  <div align="left">
+    <p align="left">The conversion between image data types, color spaces and the conversion to bitmap are defined only 
+    for the <b>imImage</b> structure.</div>
+
+
+</body>
+
+</html>

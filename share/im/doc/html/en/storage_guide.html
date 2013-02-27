@@ -1,0 +1,311 @@
+<!doctype HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Storage Guide</title>
+<link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+
+<body>
+
+<h2>Storage Guide</h2>
+<h3 align="left"><a name="read">Reading</a></h3>
+
+  <p>When reading the file extension is not relevant to determine the file 
+  format, but it is used to speed up the process of finding the correct format. 
+  With few exceptions the format drivers that access multiple images can read 
+  them in any sequence you want. </p>
+  <p>During the read process the original data can be converted to some options 
+  of user data. Not all conversions are available. You can convert any data to a 
+  bitmap version of it, and you can select any of the color mode flags<b> 
+  IM_ALPHA</b>, <b>IM_PACKED</b> and <b>IM_TOPDOWN</b>, 
+  regardless of the file original configuration.</p>
+  <p>Remember that even if all the images in the file have the same parameters 
+  you still have to call <b>imFileReadImageInfo</b> before calling <b>imFileReadImageData</b>. </p>
+  <p>In the following example all the images in the file are loaded.</p>
+  
+    <pre>char format[10], compression[10];
+int error, image_count;
+int width, height, color_mode, data_type;
+void* data;
+
+imFile* ifile = imFileOpen(&quot;test.tif&quot;, &amp;error);
+if (error != IM_ERR_NONE) 
+  // handle the error
+
+imFileGetInfo(ifile, format, compression, &amp;image_count);
+
+for (i = 0; i &lt; image_count, i++)
+{
+  error = imFileReadImageInfo(ifile, i, &amp;width, &amp;height, &amp;color_mode, &amp;data_type);
+  if (error != IM_ERR_NONE) 
+    // handle the error
+
+  // prepare data
+
+  error = imFileReadImageData(ifile, data, 0, -1); // no bitmap convertion, use original color mode flags
+  if (error != IM_ERR_NONE) 
+    // handle the error
+
+  // store data somewhere
+}
+
+imFileClose(ifile); </pre>
+  
+  <p>A more simple code loads only the first image in the file:</p>
+  
+    <pre>imFile* ifile = imFileOpen(file_name, &amp;error);
+
+imFileReadImageInfo(ifile, 0, &amp;width, &amp;height, &amp;color_mode, &amp;data_type);
+
+imFileReadImageData(ifile, data, 0, -1);
+
+imFileClose(ifile); </pre>
+  
+  <p>If you are using the <b>imImage</b> structure it is easier:</p>
+  
+    <pre>imFile* ifile = imFileOpen(file_name, &amp;error);
+ 
+imImage* image = imFileLoadImage(ifile, 0, &amp;error);</pre>
+    <pre>// or use imFileLoadBitmap to force a bitmap conversion
+
+imFileClose(ifile);</pre>
+  
+  <p>Or the simplest version:</p>
+  
+    <pre>imImage* image = imFileImageLoad(file_name, 0, &amp;error);</pre>
+  
+
+<h3 align="left"><a name="write">Writing</a></h3>
+
+  <p>When writing there is no color space or data type conversion. Only color 
+  mode flags can be different: <b>IM_ALPHA</b>, <b>IM_PACKED</b> and
+  <b>IM_TOPDOWN</b>. You just have to describe your data and the <b>imFileWriteImageData</b> will handle the color mode flag differences.</p>
+  <p>Of course you still have to check the error codes because, not all color 
+  spaces and data types are supported by each format.</p>
+  <p>When saving a sequence of images you must provide each image in the order 
+  that they will be in the file. For a video or animation start from frame 0 and 
+  go on, you can not jump or change the frame order. Also when saving videos you 
+  should not forget to save the numbers of frames per second in the attribute 
+  &quot;FPS&quot;, the default value is 15.</p>
+  <p>For all the formats it is not necessary to set the compression, each driver 
+  will choose a default compression. But you may set it using the function <b>imFileSetInfo</b>.</p>
+  <p>To save several images to the same file:</p>
+  
+    <pre>int error, width, height;
+void *data;
+
+imFile* ifile = imFileNew(&quot;test.tif&quot;, &quot;TIFF&quot;, &amp;error);
+if (error != IM_ERR_NONE) 
+  // handle the error
+
+for (i = 0; i &lt; image_count, i++)
+{
+  error = imFileWriteImageInfo(ifile, width, height, IM_RGB, IM_BYTE);
+  if (error != IM_ERR_NONE) 
+    // handle the error
+
+  error = imFileWriteImageData(ifile, data);
+  if (error != IM_ERR_NONE) 
+    // handle the error
+}
+
+imFileClose(ifile); </pre>
+  
+  <p>But remember that not all file formats supports several images. To save 
+  just one image is more simple:</p>
+  
+    <pre>imFile* ifile = imFileNew(file_name, format, &amp;error);
+
+error = imFileWriteImageInfo(ifile, width, height, color_mode, data_type);
+
+error = imFileWriteImageData(ifile, data);
+
+imFileClose(ifile); </pre>
+  
+  <p>If you are using the <b>imImage</b> structure it is easier:</p>
+  
+    <pre>imFile* ifile = imFileNew(file_name, format, &amp;error);
+
+error = imFileSaveImage(ifile, image);
+
+imFileClose(ifile);</pre>
+  
+  <p>Or the simplest version:</p>
+  
+    <pre>error = imFileImageSave(file_name, format, image);</pre>
+  
+
+<h3>Error Messages</h3>
+
+  <p>Here is a sample error message display using IUP and IM error codes:</p>
+  
+    <pre>static void imIupErrorMessage(int error, int interactive)
+{
+  char* lang = IupGetLanguage();
+  char *msg, *title;
+  if (strcmp(lang, &quot;ENGLISH&quot;)==0)
+  {
+    title = &quot;Error&quot;;
+    switch (error)
+    {
+    case IM_ERR_OPEN:
+      msg = &quot;Error Opening File.&quot;;
+      break;
+    case IM_ERR_MEM:
+      msg = &quot;Insuficient memory.&quot;;
+      break;
+    case IM_ERR_ACCESS:
+      msg = &quot;Error Accessing File.&quot;;
+      break;
+    case IM_ERR_DATA:
+      msg = &quot;Image type not Suported.&quot;;
+      break;
+    case IM_ERR_FORMAT:
+      msg = &quot;Invalid Format.&quot;;
+      break;
+    case IM_ERR_COMPRESS:
+      msg = &quot;Invalid or unsupported compression.&quot;;
+      break;
+    default:
+      msg = &quot;Unknown Error.&quot;;
+    }
+  }
+  else
+  {
+    title = &quot;Erro&quot;;
+    switch (error)
+    {
+    case IM_ERR_OPEN:
+      msg = &quot;Erro Abrindo Arquivo.&quot;;
+      break;
+    case IM_ERR_MEM:
+      msg = &quot;Memória Insuficiente.&quot;;
+      break;
+    case IM_ERR_ACCESS:
+      msg = &quot;Erro Acessando Arquivo.&quot;;
+      break;
+    case IM_ERR_DATA:
+      msg = &quot;Tipo de Imagem não Suportado.&quot;;
+      break;
+    case IM_ERR_FORMAT:
+      msg = &quot;Formato Inválido.&quot;;
+      break;
+    case IM_ERR_COMPRESS:
+      msg = &quot;Compressão Inválida ou não Suportada.&quot;;
+      break;
+    default:
+      msg = &quot;Erro Desconhecido.&quot;;
+    }
+  }
+
+  if (interactive)
+    IupMessage(title, msg);
+  else
+    printf(&quot;%s: %s&quot;, title, msg);
+}
+</pre>
+  
+
+<h3><a name="formats">About File Formats</a></h3>
+
+  <p>TIFF is still the most complete format available. It could be better if 
+  Adobe releases the revision 7, but it is on stand by. TIFF supports all the IM 
+  image representation concepts. In fact we were partially inspired by the TIFF 
+  specification. My suggestion is whenever possible use TIFF.</p>
+  <p>But TIFF may not be the ideal format for many situations. The W3C standards 
+  include only JPEG, GIF and PNG for Web browsers. JPEG forces the image to be 
+  RGB or Gray with a lossy compressed. GIF forces the image to be MAP with LZW 
+  compression. PNG forces the image to be RGB, MAP, Gray or Binary, with Deflate 
+  compression. So these characteristics are necessary to force small values for 
+  faster downloads.</p>
+  <p>JPEG is to be used for photographic content, PNG should be used for the 
+  remaining cases, but GIF is still the best to do simple animated images.</p>
+  <p>Except for some specific cases where a format is needed for compatibility, 
+  the other formats are less important. TGA, PCX, RAS, SGI and BMP have almost 
+  the same utility.</p>
+  <p>JP2 must be used for JPEG-2000 compression, would be nice if a new TIFF 
+  specification includes this standard.</p>
+  <p>Since PNM has a textual header it is very simple to teach for students so 
+  they can actually &quot;see&quot; the header. It is also a format easy to share images, 
+  but it does not do much more than that.</p>
+  <p>The TIFF and the GIF format also have support for multiple images. This 
+  does not necessarily defines an animation, pyramid nor a volume, but some 
+  times they are used in these ways. </p>
+  <p>GIF became very popular to build animations for the Web, and since the LZW 
+  patent expired Unisys realized that charging the usage isn't going to work and 
+  so they did not renew it. LZW is fully supported at IM.</p>
+  <p>IM also supports video formats like AVI and WMV as external libraries. In 
+  these cases the frames are also loaded as a sequence of individual images. 
+  Sound is not supported.</p>
+  <p>TIFF, JPEG and PNG have an extensive list of attributes, most of them are 
+  listed in the documentation, but some custom attributes may come up when 
+  reading an image from file.</p>
+
+<h3><a name="filesdk">New File Formats</a></h3>
+
+  <p>Again the easiest way is to look at the source code of an already 
+  implemented format. The RAS, BMP, TGA and SGI formats are very simple to 
+  follow.</p>
+  <p>Basically you have to implement a class that inherits from <b>imFormat</b> 
+  and implement its virtual methods. You can use the <b>imBinFile</b> functions 
+  for I/O or use an external SDK.</p>
+  <p>For more information see
+  <a href="doxygen/group__filesdk.html">File 
+  Format SDK</a>.</p>
+
+<h3><a name="binfilemem">Memory I/O and Others</a></h3>
+
+  <p>For the majority of the formats, with the exception of the ones that use 
+  external SDKs, the I/O is done by the <b>imBinFile</b> module.</p>
+  <p>This module can be configured to access other types of media by 
+  implementing a driver. There are some predefined drivers see
+  <a href="doxygen/group__binfile.html">Reference 
+  / Utilities / Binary File Access</a>.</p>
+  <p>One very useful is the <b>Memory Buffer</b> where you can read and write a 
+  file in memory. The activation is very simple, it needs to happen just before 
+  the <b>imFileOpen/imFileNew</b> functions. But the file name must be a 
+  pointer to an <b>imBinMemoryFileName </b>structure instead of a string. 
+  Se the example bellow:</p>
+  
+    <pre>int old_mode = imBinFileSetCurrentModule(IM_MEMFILE);
+
+imBinMemoryFileName MemFileName; // This structure must exists 
+    while the file remains open.<br>
+    MemFileName.buffer = NULL; // Let the library initializes the buffer, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+    // but it must be freed the the application, free(MemFileName.buffer) 
+    MemFileName.size = 1024; // The initial size<br>
+    MemFileName.reallocate = 1.5; // The reallocation will increase 50% the 
+    buffer.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+    // This is used only when writing with a variable buffer.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+    // Use 0 to fix the buffer size.
+
+int error;<br>
+    imFile* ifile = imFileNew((const char*)&amp;MemFileName, &quot;GIF&quot;, &amp;error); 
+
+imBinFileSetCurrentModule(old_mode); // The mode needs to be active 
+    only for the imFileOpen/imFileNew call.
+
+if (error != IM_ERR_NONE) ....</pre>
+  
+  <p>Another driver interesting is the <b>Subfile</b> where you can read and 
+  write from a file that is already open. This is very important for formats 
+  that can have an embedded format inside. In this module the file_name
+  <span class="comment">is a pointer to an <b>imBinFile</b>&nbsp; 
+  structure from any other module that uses the <b>imBinFile</b> functions. The
+  <b>imBinFileSize</b> will return the full file size, but the <b>imBinFileSeekTo</b> and 
+  <b>imBinFileTell</b> functions will 
+  compensate the position when the subfile was open.</span></p>
+  <p><span class="comment">Using </span><b>imBinFileSetCurrentModule(IM_SUBFILE)</b> just like the example above will 
+  allow you to open a subfile using the <b>imFileOpen/imFileNew</b> 
+  functions.</p>
+
+
+</body>
+
+</html>

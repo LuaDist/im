@@ -1,0 +1,35 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1">
+<title>Processing</title>
+<link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+
+<body>
+
+<h1>Image Processing</h1>
+
+  <p>We use the simpliest model possible, a function with input data, output 
+  data and control parameters. </p>
+  <p>The operations have usually one or more input images, and one or more 
+  output images.&nbsp; We avoid implementing in-place operations, but many 
+  operations can use the same data for input and output. The data type, color 
+  mode and size of the images depends on the operation. Sometimes the operations 
+  can change the data type to increase the precision of the results, but 
+  normally only a few operations will change the size (resize and geometric) and 
+  color mode (color conversion). All of these details are described in each 
+  function documentation, check before using them.</p>
+  <p>There is no ROI (Region Of Interest) management, but you can <strong>
+  imProcessCrop</strong>, <strong>imProcess</strong>*, 
+  then <strong>imProcessInsert</strong> the result in the original image.</p>
+<p>The image data of the output image is assumed to be zero before any 
+operation. This is always true after creating a new image, but if you are 
+reusing an image for several operation use <strong>imImageClear</strong> to zero 
+the image data between operations.</p>
+
+
+</body>
+
+</html>

@@ -1,0 +1,16 @@
+<map id="structs" name="structs">
+<area shape="rect" id="node1" href="$group__cpx.html" title="Complex Numbers" alt="" coords="163,5,317,37"/>
+<area shape="rect" id="node2" href="$group__math.html" title="Math Utilities" alt="" coords="184,61,296,93"/>
+<area shape="rect" id="node3" href="$group__color.html" title="Color Manipulation" alt="" coords="161,117,319,149"/>
+<area shape="rect" id="node4" href="$group__str.html" title="String Utilities" alt="" coords="180,173,300,205"/>
+<area shape="rect" id="node5" href="$group__dib.html" title="Windows DIB" alt="" coords="179,229,301,261"/>
+<area shape="rect" id="node7" href="$group__lib.html" title="Library Management" alt="" coords="155,285,325,317"/>
+<area shape="rect" id="node8" href="$group__datatypeutl.html" title="Data Type Utilities" alt="" coords="164,341,316,373"/>
+<area shape="rect" id="node9" href="$group__counter.html" title="Counter" alt="" coords="200,397,280,429"/>
+<area shape="rect" id="node10" href="$group__bin.html" title="Binary Data Utilities" alt="" coords="157,453,323,485"/>
+<area shape="rect" id="node11" href="$group__imlua.html" title="ImLua 5 Binding Reference" alt="" coords="129,509,351,541"/>
+<area shape="rect" id="node12" href="$group__binfile.html" title="Binary File Access" alt="" coords="160,565,320,597"/>
+<area shape="rect" id="node13" href="$group__palette.html" title="Palette Generators" alt="" coords="161,621,319,653"/>
+<area shape="rect" id="node14" href="$group__colorutl.html" title="Color Utilities" alt="" coords="181,677,299,709"/>
+<area shape="rect" id="node15" href="$group__compress.html" title="Data Compression Utilities" alt="" coords="133,733,347,765"/>
+</map>
