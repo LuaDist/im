@@ -1,0 +1,73 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1">
+<title>Storage</title>
+<link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+
+<body>
+
+<h1>
+    Image Storage</h1>
+
+  <p>Essentially all the file formats save the same image data. There is no such 
+  thing like a GIF image, instead we have a color indexed image that can be 
+  saved in a file with a GIF format, or a TIFF format, etc. However the 
+  compression encoding can be lossy and degrade the original image. The point is 
+  file formats and image data are two different things.</p>
+  <p>A file format is a file organization of the image data and its attributes. 
+  The IM library model considers all the file formats under the same model, 
+  including image, video, animation, stacks and volume file formats. When there 
+  is more than one image each one is treated as an independent frame. Each frame 
+  can have its own parameters and set of attributes.</p>
+  <p>The abstract model we use has the following structure:</p>
+  <div align="center">
+    <center>
+    <table border="1" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="300" id="AutoNumber1" cellpadding="3">
+      <tr>
+        <td align="center" bgcolor="#C0C0C0"><b>Format Identifier</b></td>
+      </tr>
+      <tr>
+        <td align="center" bgcolor="#C0C0C0"><b>Compression</b></td>
+      </tr>
+      <tr>
+        <td align="center" bgcolor="#C0C0C0"><b>Image Count</b></td>
+      </tr>
+      <tr>
+        <td align="center" style="border-top-style: solid; border-top-width: 1" bgcolor="#FFFF99">
+        Image Information:<br>
+        parameters, attributes, palette</td>
+      </tr>
+      <tr>
+        <td align="center" bgcolor="#FFFF99">Image Data</td>
+      </tr>
+      <tr>
+        <td align="center" bgcolor="#FFFFCC">Image Information:<br>
+        parameters, attributes, palette</td>
+      </tr>
+      <tr>
+        <td align="center" bgcolor="#FFFFCC">Image Data</td>
+      </tr>
+      <tr>
+        <td align="center" bgcolor="#FFFF99">...</td>
+      </tr>
+    </table>
+    </center>
+  </div>
+  <p>The compression is usually the same for all the images in the file, but it 
+  can be changed after loading an image. For tradicional file formats image 
+  count is always 1. Image information must always be loaded or saved before 
+  image data.</p>
+  <p>We consider only formats that starts with a signature so we can recognize 
+  the format without using its file extension. If there is more than one driver 
+  that handles the same signature the first registered driver will open the 
+  file. Since the internal drivers are automatically registered all the external 
+  drivers can be loaded first if no <b>imFile</b> function has been called. In 
+  this way you can also control which external driver goes first.</p>
+
+
+</body>
+
+</html>

@@ -1,0 +1,76 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Storage Samples</title>
+<link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+
+<body>
+
+<h2>More Storage Samples</h2>
+<p>See the <a href="storage_guide.html">Storage Guide</a> for simple storage 
+samples.</p>
+<h3><a name="im_info">Information</a></h3>
+
+  <p>This is a command line application that displays information obtained from 
+  a file using the IM I/O functions, basically <b>imFile</b> functions. It 
+  depends only on the IM main library.</p>
+  <p>Here is an output sample:</p>
+  
+    <pre>IM Info
+  File Name:
+    exif_test.tif
+  File Size: 9.00 Mb
+  Format: TIFF - Tagged Image File Format
+  Compression: NONE
+  Image Count: 1
+  Image #0
+    Width: 2048
+    Height: 1536
+    Color Space: RGB
+      Has Alpha: No
+      Is Packed: Yes
+      Is Top Down: Yes
+    Data Type: byte
+    Data Size: 9.00 Mb
+    Attributes:
+      YResolution: 72.00
+      XResolution: 72.00
+      DateTime: 2004:01:14 11:30:11
+      Make: SONY
+      ResolutionUnit: DPI
+      Model: CD MAVICA
+      Photometric: 2</pre>
+  
+  <p>You can view the source code here: <a href="../examples/im_info.cpp">im_info.cpp</a></p>
+
+<h3><a name="im_copy">Copy</a></h3>
+
+  <p>This is a command line application that copies all the information from one 
+  file to another using the IM I/O functions. It depends only on the IM main 
+  library. It is usefull for testing the drivers.</p>
+  <p>You can view the source code here: <a href="../examples/im_copy.cpp">im_copy.cpp</a></p>
+
+
+<h3><a name="loadbmp">Load Bitmap from Resource File</a></h3>
+<p>In Windows if you have a bitmap stored in a resource file, like this:</p>
+<span LANG="EN">
+<pre>bitmap_test BITMAP bitmap_test.bmp</pre>
+</span>
+<p>The you could retreive it using the following code:</p>
+<pre>#include &lt;windows.h&gt;
+#include &lt;im.h&gt;
+#include &lt;im_dib.h&gt;
+
+HBITMAP hBmp = LoadBitmap(hInstance, "bitmap_test");
+imDib* dib = imDibFromHBitmap(hBmp, NULL);
+imImage* image imDibToImage(dib);
+imDibDestroy(dib);
+</pre>
+
+
+</body>
+
+</html>

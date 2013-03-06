@@ -1,0 +1,156 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1">
+<title>Representation</title>
+<link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+
+<body>
+
+<h1>Image Representation</h1>
+<h3>Width and Height</h3>
+
+  <p>In the IM library images are 2D matrices of pixels defining <b>width</b> and <b>height</b>. Stacks, Animations, 
+  Videos and Volumes are represented as a sequence of individual images. </p>
+
+<h3>Color Space</h3>
+
+  <p>The pixels can have one of several <b>color spaces</b>: </p>
+  <ul>
+    <li><b>IM_RGB</b></li>
+    <li><b>IM_MAP</b></li>
+    <li><b>IM_GRAY</b></li>
+    <li><b>IM_BINARY</b></li>
+    <li><b>IM_CMYK</b></li>
+    <li><b>IM_YCBCR</b></li>
+    <li><b>IM_LAB</b></li>
+    <li><b>IM_LUV</b></li>
+    <li><b>IM_XYZ</b> .&nbsp;&nbsp; </li>
+  </ul>
+  <p><b>IM_MAP</b> is a subset of the <b>IM_RGB</b> color space. It can have a maximum of 256 colors. Each 
+  value is an index into a RGB palette.</p>
+  <p><b>IM_GRAY</b> usually means luma (nonlinear Luminance), but it can represent any other intensity value that 
+  is not necessarily related to color.</p>
+  <p><b>IM_BINARY</b> is a subset of the <b>IM_GRAY</b> color space, and it has only 2 colors black and 
+  white. Each value can be 0 or 1. But for practical reasons we use one byte to store it.</p>
+  <p>The other color spaces are standard CIE color spaces, except CMYK that does not have a clear definition without 
+  other parameters to complement it.</p>
+
+<h3>Data Type</h3>
+
+  <p>There are several numeric representations for the color component, or several <b>data types</b>:</p>
+  <ul>
+    <li><b>IM_BYTE&nbsp; </b>&nbsp;(1 byte unsigned integer)</li>
+    <li><b>IM_USHORT&nbsp; </b>&nbsp;(2 bytes unsigned integer)</li>
+    <li><b>IM_INT&nbsp;&nbsp; </b>(4 bytes signed integer)</li>
+    <li><b>IM_FLOAT&nbsp;&nbsp; </b>(4 bytes single precision floating point 
+	real)</li>
+    <li><b>IM_CFLOAT</b> (2x 4 bytes single precision floating point real to 
+	compose a complex number)</li>
+  </ul>
+  <p>There is no bit type, binary images use 1 byte (waist space but keep processing simple).</p>
+
+<h3>Color Mode Flags</h3>
+
+  <p>To avoid defining another image parameter we also use a parameter called <b>color_mode</b> that it is composed by 
+  the <b>color_space</b> plus some <b>flags</b>, i.e. <b>color_mode = color_space + flags</b>. The flags are binary 
+  combined with the color space, for example color_mode = IM_RGB | IM_XXX. And several flags can be combined in the same 
+  color_mode. </p>
+  <p>There are 3 flags:</p>
+  <ul>
+    <li><b>IM_ALPHA</b></li>
+    <li><b>IM_PACKED</b></li>
+    <li><b>IM_TOPDOWN</b></li>
+  </ul>
+  <p>When a flag is absent the opposite definition is assumed. For simplicity we define some macros that help handling 
+  the color mode:</p>
+  <ul>
+    <li><b>imColorModeSpace</b></li>
+    <li><b>imColorModeHasAlpha</b></li>
+    <li><b>imColorModeIsPacked</b></li>
+    <li><b>imColorModeIsTopDown</b></li>
+  </ul>
+  <h4>Color Components Packaging (<b>IM_PACKED or unpacked)</b></h4>
+  
+    <p>The number of components of the color space defines the depth of the image. The color components can be packed 
+    sequentially in one plane (like rgbrgbrgb...) or separated in several planes (like rrr...ggg...bbb...). Packed color 
+    components are normally used by graphics systems. We allow these two options because many users define their own 
+    image structure that can have a packed or an separated organization. The following picture illustrates the 
+    difference between the two options:</p>
+  
+  <p align="center"><img border="0" src="paking.gif" width="626" height="232"><br>
+  <b>(flag not defined)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  IM_PACKED</b></p>
+  <p align="center"><b>Separated and Packed RGB Components</b></p>
+  <h4>Alpha Channel (<b>IM_ALPHA or no alpha</b>)</h4>
+  
+    <p>An extra component, the <b>alpha</b> channel, may be present. The number of components is then increased by one. 
+    Its organization follows the rules of packed and unpacked components.</p>
+  
+  <h4>Orientation (<b>IM_TOPDOWN or bottom up)</b></h4>
+  
+    <p>Image orientation can be bottom up to top with the origin at the bottom left corner, or top down to bottom with 
+    the origin at the top left corner. </p>
+  
+  <p align="center"><img border="0" src="topdown.gif" width="538" height="280"></p>
+  <p align="center"><b>IM_TOPDOWN</b> <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  (flag not defined)</b></p>
+  <p align="center"><b>Top Down and Bottom Up Orientations</b></p>
+  <h4>Examples</h4>
+  
+    <p><b>IM_RGB</b> | <b>IM_ALPHA</b> - rgb color space with an alpha channel, bottom up orientation and 
+    separated components<br>
+    <b>IM_GRAY</b> | <b>IM_TOPDOWN</b> - gray color space with no alpha channel and top down orientation<br>
+    <b>IM_RGB</b> | <b>IM_ALPHA</b> | <b>IM_PACKED</b> - rgb color space with an alpha channel, bottom 
+    up orientation and packed components</p>
+  
+
+<h3>Raw Data Buffer</h3>
+
+  <p>So these four parameters define our raw image data: <b>width</b>, <b>height</b>, <b>color_mode</b> and <b>data_type</b>. 
+  The raw data buffer is always byte aligned and each component is stored sequentially in the buffer following the 
+  specified packing. </p>
+  <p>For example, if a RGB image is 4x4 pixels it will have the following organization in memory:</p>
+  
+    <pre><b>RRRR</b>RRRR<b>RRRR</b>RRRR<b>GGGG</b>GGGG<b>GGGG</b>GGGG<b>BBBB</b>BBBB<b>BBBB</b>BBBB - for non packed components
+0   1   2   3   0   1   2   3   0   1   2   3</pre>
+    <pre><b>RGBRGBRGBRGB</b>RGBRGBRGBRGB<b>RGBRGBRGBRGB</b>RGBRGBRGBRGB - for packed components
+0           1           2           3</pre>
+  
+  <p>In bold we visually marked some lines of data.</p>
+
+<hr>
+<h3>imImage</h3>
+
+  <p>We could restrict the data organization by eliminating the extra flags, but several users requested these features 
+  in the library. So we keep them but restricted to raw data buffers. </p>
+  <p>For the high level image processing functions we created a structure called <b>imImage</b> that eliminates the 
+  extra flags and assume <u>bottom up orientation</u> and <u>separated components</u>. Alpha channel is supported as an 
+  extra component.</p>
+  <p>The <b>imImage</b> structure is defined using four image parameters: <b>width</b>, <b>height</b>, <b>color_space</b> 
+  and <b>data_type</b>. It is an open structure in C where you can access all the parameters. In addition to the 4 
+  creation parameters there are many auxiliary parameters like <b>depth</b>, <b>count</b>, <b>line_size</b>, <b>
+  plane_size</b> and <b>size</b>. </p>
+
+<p>
+As the library is designed to work with such a wide range of image data 
+organization, there are no general purpose functions for getting/setting 
+individual pixels, as they would be too complicated and inefficient. Rather, you 
+should use the components of the imImage structure to access image pixels in the 
+most efficient way.
+</p>
+
+<h3>Bitmaps</h3>
+
+  <div align="left">
+    <p align="left">An important subset of images is what we call a <b>Bitmap</b> image. It is an image that can be 
+    displayed in graphics devices usually using a graphics library like CD or 
+	OpenGL. For Bitmap images the color space must be 
+    <b>IM_RGB</b>, <b>IM_MAP</b>,
+    <b>IM_GRAY</b> or <b>IM_BINARY</b>, and the data type must be <b>IM_BYTE</b>.</div>
+  
+</body>
+
+</html>
